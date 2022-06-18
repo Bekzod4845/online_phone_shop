@@ -1,0 +1,21 @@
+GET http://localhost:8081/init/initAdmin
+
+###
+POST http://localhost:8081/auth/login
+Content-Type: application/json
+
+{
+  "phoneNumber": "5555"
+}
+
+
+###
+
+POST http://localhost:8080/auth/registration
+Content-Type: application/json
+
+{
+  "name" : "Alisher",
+  "surname" : "Atajanov",
+  "phoneNumber": "111"
+}
