@@ -1,5 +1,5 @@
 
-### product create Profale role Seller
+### product create Profile role Seller
 POST http://localhost:8082/product/seller
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1ODk5ODAsImV4cCI6MTY1NTU5MzU4MCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoyLCJyb2xlIjoiU0VMTEVSIn0.-gVVSI7p30YGrGvhToTpkkSWYhUpz4DzR1NqcXsmuNk
@@ -21,13 +21,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1ODk5ODAsImV4cCI6MTY1N
 
 }
 
-### product status update On sale OR Not on sale
+### product status update On sale OR Not on sale in product Id  role Seller
 PUT http://localhost:8082/product/seller/status/ff8080818178deca018178e742aa0001
 Content-Type: application/json
 Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1ODk5ODAsImV4cCI6MTY1NTU5MzU4MCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoyLCJyb2xlIjoiU0VMTEVSIn0.-gVVSI7p30YGrGvhToTpkkSWYhUpz4DzR1NqcXsmuNk
 
 
-###product visible update ture or false
+###product visible update ture or false in product Id   role Seller
 DELETE http://localhost:8082/product/seller/delete/ff808081817852420181786295a40002
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1Njk1MDQsImV4cCI6MTY1NTU3MzEwNCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjo0LCJyb2xlIjoiU0VMTEVSIn0.7D_APJh4LPRvvkuiFvh5S_fnVAKZYBHadd_vNHl6V1M
@@ -37,10 +37,12 @@ GET http://localhost:8082/product/pagination?page=1&size=2
 Content-Type: application/json
 
 
-###get product list brand and category key on sale
+###get product list brand and categorykey on sale in users
 GET http://localhost:8082/product/list/?brand=Apple&categoryKey=Mac
 
 
 
-###get product order by date on sale
+###get product order by date on sale in users
 GET http://localhost:8082/product/list
+
+

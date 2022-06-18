@@ -1,3 +1,5 @@
+
+### cerate brand in Admin
 POST http://localhost:8082/brand/admin
 Content-Type: application/json
 Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1ODk4MjksImV4cCI6MTY1NTU5MzQyOSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxLCJyb2xlIjoiQURNSU4ifQ.wUO6BRGNEshy1dbsbiMii9gM81ZCKgl021oFNbm9d_M
@@ -5,8 +7,8 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1ODk4MjksImV4cCI6MTY1NT
 {
   "name" : "Samsung"
 }
-###
 
+### get brand list in admin
 GET http://localhost:8082/brand/admin
 Content-Type: application/json
 Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1NzgyODgsImV4cCI6MTY1NTU4MTg4OCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxLCJyb2xlIjoiQURNSU4ifQ.4ZD-6FVrmQhMpVDmvObXSDqc_r3XbqNG3VNawVqpU-g

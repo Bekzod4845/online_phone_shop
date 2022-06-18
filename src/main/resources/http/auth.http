@@ -1,6 +1,6 @@
 GET http://localhost:8082/init/initAdmin
 
-###
+###login  phonenumber
 POST http://localhost:8082/auth/login
 Content-Type: application/json
 
@@ -8,9 +8,20 @@ Content-Type: application/json
   "phoneNumber": "7777"
 }
 
+###registration user
+POST http://localhost:8082/auth/registration
+Content-Type: application/json
 
-###
+{
+  "name" : "VAli",
+  "surname" : "Afadfae",
+  "phoneNumber": "7777"
+}
 
+
+
+
+###create seller in Admin
 POST http://localhost:8082/profile/admin/create
 Content-Type: application/json
 Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1ODEyNzEsImV4cCI6MTY1NTU4NDg3MSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxLCJyb2xlIjoiQURNSU4ifQ.MvaqJ8Jvt-dKFjLtFVCdg2dyGjzwZkG29dgOLRWYAzw
@@ -20,3 +31,5 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1ODEyNzEsImV4cCI6MTY1NT
   "surname" : "Afadfae",
   "phoneNumber": "7777"
 }
+
+

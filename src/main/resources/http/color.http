@@ -1,3 +1,4 @@
+### create color in Admin
 POST http://localhost:8082/color/admin
 Content-Type: application/json
 Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1NzgyODgsImV4cCI6MTY1NTU4MTg4OCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxLCJyb2xlIjoiQURNSU4ifQ.4ZD-6FVrmQhMpVDmvObXSDqc_r3XbqNG3VNawVqpU-g
@@ -10,11 +11,11 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1NzgyODgsImV4cCI6MTY1NT
   "code" : "grwwwrggg"
 }
 
-###
+### get color list in admin
 GET http://localhost:8082/color/admin
 Content-Type: application/json
 Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1NjE3ODUsImV4cCI6MTY1NTU2NTM4NSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxLCJyb2xlIjoiQURNSU4ifQ.2870xu4wAVmgADaRBgfpjvfF2Kh68Dy1NLCEx49VV_Y
 
-###
+###get color list users in current language
 GET http://localhost:8082/color/public
 Accept-Language: RU
