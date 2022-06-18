@@ -21,6 +21,7 @@ public class ProductDTO {
     private String technicalSpecification;
     private ProfileDTO seller;
     private CategoryDTO category;
+    private CategoryDTO categoryParent;
     private BrandDTO brand;
     private ProductStatus status;
     private Boolean visible;

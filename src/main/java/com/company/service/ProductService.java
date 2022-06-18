@@ -9,11 +9,16 @@ import com.company.entity.ProfileEntity;
 import com.company.enums.ProductStatus;
 import com.company.exp.BadRequestException;
 import com.company.exp.ItemNotFoundException;
+import com.company.mapper.ProductShortInfo;
 import com.company.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
+
 import java.time.LocalDateTime;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,6 +32,23 @@ public class ProductService {
     private ProductColorService productColorService;
     @Autowired
     private ProductRepository productRepository;
+
+    public PageImpl pagination(int page, int size) {
+        Sort sort = Sort.by(Sort.Direction.ASC, "dateOnSale");
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        Page<ProductEntity> all = productRepository.findAll(pageable);
+        List<ProductEntity> list = all.getContent();
+        List<ProductDTO> dtoList = new LinkedList<>();
+        list.forEach(productEntity -> {
+            dtoList.add(shortDTOInfo(productEntity));
+        });
+        return new PageImpl(dtoList,pageable, all.getTotalElements());
+    }
+
+
+
+
     public ProductDTO create(ProductCreateDTO dto, Integer profileId) {
         ProductEntity entity = new ProductEntity();
         Optional<ProductEntity> optional= productRepository.findByModel(dto.getModel());
@@ -43,9 +65,12 @@ public class ProductService {
 
         BrandEntity brand = brandService.get(dto.getBrandId());
         entity.setBrend(brand);
-
-        CategoryEntity category = categoryService.get(dto.getCategoryId());
-        entity.setCategory(category);
+        if (dto.getCategoryId() != null) {
+            CategoryEntity category = categoryService.get(dto.getCategoryId());
+            entity.setCategory(category);
+        }
+        CategoryEntity categoryParent = categoryService.get(dto.getCategoryParentId());
+        entity.setCategoryParent(categoryParent);
 
         ProfileEntity seller = new ProfileEntity();
         seller.setId(profileId);
@@ -63,7 +88,6 @@ public class ProductService {
         productDTO.setStatus(entity.getStatus());
         return productDTO;
     }
-
 
 
     public void updateByStatus(String productId, Integer pId) {
@@ -92,5 +116,44 @@ public class ProductService {
             productRepository.deleteByNotProductVisible(productId);
         }
 
+    }
+
+
+    public List<ProductDTO> getLastPhone(String brand,String categoryKey) {
+        List<ProductEntity> articlePage = productRepository.findLastPhone(brand,categoryKey
+                );
+
+        List<ProductDTO> dtoList = new LinkedList<>();
+        articlePage.forEach(productEntity -> {
+            dtoList.add(shortDTOInfo(productEntity));
+        });
+        return dtoList;
+    }
+
+    public List<ProductDTO> getLast5ArticleBy() {
+        Pageable pageable = PageRequest.of(0, 8);
+        Page<ProductEntity> articlePage = productRepository.findLastBy(pageable);
+        List<ProductDTO> dtoList = new LinkedList<>();
+        articlePage.getContent().forEach(productEntity -> {
+            dtoList.add(shortDTOInfo(productEntity));
+        });
+        return dtoList;
+    }
+
+    private ProductDTO shortDTOInfo(ProductEntity entity) {
+        ProductDTO dto = new ProductDTO();
+        dto.setId(entity.getId());
+        dto.setModel(entity.getModel());
+        dto.setPrice(entity.getPrice());
+        // TODO image
+        return dto;
+    }
+    private ProductDTO shortDTOInfo(ProductShortInfo entity) {
+        ProductDTO dto = new ProductDTO();
+        dto.setId(entity.getId());
+        dto.setModel(entity.getModel());
+        dto.setPrice(entity.getPrice());
+        // TODO image
+        return dto;
     }
 }

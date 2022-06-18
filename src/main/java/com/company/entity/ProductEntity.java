@@ -2,6 +2,7 @@ package com.company.entity;
 
 import com.company.enums.ProductStatus;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -9,6 +10,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
+@NoArgsConstructor
 @Setter
 @Entity
 @Table(name = "product")
@@ -45,6 +47,10 @@ public class ProductEntity {
     private CategoryEntity category;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_parent_id")
+    private CategoryEntity categoryParent;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brend_id")
     private BrandEntity brend;
 
@@ -61,4 +67,9 @@ public class ProductEntity {
     private Boolean visible = Boolean.TRUE;
 
 
+    public ProductEntity(String id, String model, Double price) {
+        this.id = id;
+        this.model = model;
+        this.price = price;
+    }
 }

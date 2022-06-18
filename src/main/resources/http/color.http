@@ -1,13 +1,13 @@
 POST http://localhost:8082/color/admin
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1NjMyMzAsImV4cCI6MTY1NTU2NjgzMCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxLCJyb2xlIjoiQURNSU4ifQ.Cl4TNZWlsKUadO7D3G2Q9CpIt8FVV60pniWRFo-BeJU
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1NzgyODgsImV4cCI6MTY1NTU4MTg4OCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxLCJyb2xlIjoiQURNSU4ifQ.4ZD-6FVrmQhMpVDmvObXSDqc_r3XbqNG3VNawVqpU-g
 
 {
-  "key" : "OQ",
-  "nameUz" : "OQ_uz",
-  "nameRu" : "OQ_uz",
-  "nameEn" : "OQ_en",
-  "code" : "eafafafaefeafa"
+  "key" : "Qora",
+  "nameUz" : "Qora_uz",
+  "nameRu" : "Qora_uz",
+  "nameEn" : "Qora_en",
+  "code" : "grwwwrggg"
 }
 
 ###

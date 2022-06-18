@@ -1,12 +1,12 @@
 POST http://localhost:8082/category/admin
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1NjQxNDIsImV4cCI6MTY1NTU2Nzc0MiwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxLCJyb2xlIjoiQURNSU4ifQ.XiyK2UGPpyQmy8GkFA9AgP5EVf750DSq0SFH4YB3G40
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1ODkxMjUsImV4cCI6MTY1NTU5MjcyNSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoyLCJyb2xlIjoiU0VMTEVSIn0.WX9DUlnYs84e1XSU4ViK7fYNWtSuOr-lKmnqn7p-AOE
 
 {
-  "key" : "Planshet",
-  "nameUz" : "Planshet_uz",
-  "nameRu" : "Planshet_ru",
-  "nameEn" : "Planshet_en"
+  "key" : "Tablets",
+  "nameUz" : "Planshetlar",
+  "nameRu" : "Таблетки",
+  "nameEn" : "Tablets"
 
 }
 
