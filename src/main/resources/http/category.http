@@ -1,11 +1,21 @@
-POST http://localhost:8081/category/admin
+POST http://localhost:8082/category/admin
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1MTg5NTcsImV4cCI6MTY1NTUyMjU1NywiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxLCJyb2xlIjoiQURNSU4ifQ.b1-kaqUW1-giKUztWefPSrHqJuBoCxzKugKfCzZp4RE
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1NjQxNDIsImV4cCI6MTY1NTU2Nzc0MiwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxLCJyb2xlIjoiQURNSU4ifQ.XiyK2UGPpyQmy8GkFA9AgP5EVf750DSq0SFH4YB3G40
 
 {
-  "key" : "tugmachali",
-  "nameUz" : "tugmachali_uz",
-  "nameRu" : "tugmachali_ru",
-  "nameEn" : "tugmachali_en"
+  "key" : "Planshet",
+  "nameUz" : "Planshet_uz",
+  "nameRu" : "Planshet_ru",
+  "nameEn" : "Planshet_en"
 
 }
+
+###
+GET http://localhost:8082/category/admin
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1NjA0NDksImV4cCI6MTY1NTU2NDA0OSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxLCJyb2xlIjoiQURNSU4ifQ._ZzCCmPxP7hxoT9MZvpbPXP8gj1IhQyqTJU-0YpqQSM
+
+
+###
+GET http://localhost:8082/category/public
+Accept-Language: UZ

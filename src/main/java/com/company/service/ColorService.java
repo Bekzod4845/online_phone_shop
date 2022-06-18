@@ -20,14 +20,17 @@ public class ColorService {
     private ColorRepository colorRepository;
     public ColorDTO create(ColorDTO dto) {
         isValid(dto);
-
-        Optional<ColorEntity> optional = colorRepository.findByKeyAndCode(dto.getKey(), dto.getCode());
+        Optional<ColorEntity> optional = colorRepository.findByKey(dto.getKey());
         if (optional.isPresent()){
             throw new BadRequestException("color is exsits");
         }
-        ColorEntity entity = optional.get();
-        toEntity(entity,dto);
-
+        ColorEntity entity = new ColorEntity();
+        entity.setKey(dto.getKey());
+        entity.setNameUz(dto.getNameUz());
+        entity.setNameRu(dto.getNameRu());
+        entity.setNameEn(dto.getNameEn());
+        entity.setCode(dto.getCode());
+        colorRepository.save(entity);
         dto.setId(entity.getId());
         return dto;
     }
@@ -36,7 +39,7 @@ public class ColorService {
         isValid(dto);
         ColorEntity entity = get(id);
         System.out.println("success update color");
-        toEntity(entity ,dto);
+
 
     }
 
@@ -86,8 +89,8 @@ public class ColorService {
             throw new ItemNotFoundException("Color Not found");
         });
     }
-    public ColorEntity get(String key,String code) {
-        return colorRepository.findByKeyAndCode(key,code).orElseThrow(() -> {
+    public ColorEntity get(String key) {
+        return colorRepository.findByKey(key).orElseThrow(() -> {
             throw new ItemNotFoundException("Color Not found");
         });
     }
@@ -103,14 +106,6 @@ public class ColorService {
         return dto;
     }
 
-    public void toEntity(ColorEntity entity, ColorDTO dto) {
-        entity.setKey(dto.getKey());
-        entity.setNameUz(dto.getNameUz());
-        entity.setCode(dto.getCode());
-        entity.setNameEn(dto.getNameEn());
-        entity.setNameRu(dto.getNameRu());
-        colorRepository.save(entity);
-    }
 
     private void isValid(ColorDTO dto) {
         if (dto.getKey() == null){

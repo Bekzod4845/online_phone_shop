@@ -1,21 +1,22 @@
-GET http://localhost:8081/init/initAdmin
+GET http://localhost:8082/init/initAdmin
 
 ###
-POST http://localhost:8081/auth/login
+POST http://localhost:8082/auth/login
 Content-Type: application/json
 
 {
-  "phoneNumber": "5555"
+  "phoneNumber": "7777"
 }
 
 
 ###
 
-POST http://localhost:8080/auth/registration
+POST http://localhost:8082/profile/admin/create
 Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1NjMyMzAsImV4cCI6MTY1NTU2NjgzMCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxLCJyb2xlIjoiQURNSU4ifQ.Cl4TNZWlsKUadO7D3G2Q9CpIt8FVV60pniWRFo-BeJU
 
 {
-  "name" : "Alisher",
-  "surname" : "Atajanov",
-  "phoneNumber": "111"
+  "name" : "VAli",
+  "surname" : "Afadfae",
+  "phoneNumber": "7777"
 }

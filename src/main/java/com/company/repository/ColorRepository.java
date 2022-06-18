@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface ColorRepository extends PagingAndSortingRepository<ColorEntity, Integer> {
 
-    Optional<ColorEntity> findByKeyAndCode(String key, String code);
-
     Iterable<ColorEntity> findAllByVisible(boolean b);
+
+    Optional<ColorEntity> findByKey(String key);
 }

@@ -1,0 +1,30 @@
+POST http://localhost:8082/product/seller
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1NjQyOTMsImV4cCI6MTY1NTU2Nzg5MywiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjo0LCJyb2xlIjoiU0VMTEVSIn0.St7LUmACAQeoyj7MCZp6uPCvjgg7icALCBCUXZqfxyg
+
+{
+  "model": "13 Pro ",
+  "analysis": "Xabar kontendaedaefaefafai",
+  "technicalSpecification": "dasdasdasdasdasd",
+  "ram": 4,
+  "memory": 128,
+  "price" : 2500,
+  "brandId" : 1,
+  "categoryId" : 1,
+  "colorList": [
+    1,
+    2
+  ]
+
+}
+
+###
+PUT http://localhost:8082/product/seller/status/ff80808181777f8f0181777fe5580000
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1NjQyOTMsImV4cCI6MTY1NTU2Nzg5MywiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjo0LCJyb2xlIjoiU0VMTEVSIn0.St7LUmACAQeoyj7MCZp6uPCvjgg7icALCBCUXZqfxyg
+
+
+####
+DELETE http://localhost:8082/product/seller/delete/ff80808181777f8f0181777fe5580000
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1Njk1MDQsImV4cCI6MTY1NTU3MzEwNCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjo0LCJyb2xlIjoiU0VMTEVSIn0.7D_APJh4LPRvvkuiFvh5S_fnVAKZYBHadd_vNHl6V1M

@@ -41,7 +41,6 @@ public class AuthService {
         if (optional.isPresent()) {
             throw new BadRequestException("User already exists");
         }
-
         ProfileEntity entity = new ProfileEntity();
         entity.setName(dto.getName());
         entity.setSurname(dto.getSurname());

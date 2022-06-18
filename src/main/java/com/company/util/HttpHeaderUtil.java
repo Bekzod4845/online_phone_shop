@@ -17,7 +17,6 @@ public class HttpHeaderUtil {
         }
         return id;
     }
-
     public static Integer getId(HttpServletRequest request) {
         return getId(request, null);
     }

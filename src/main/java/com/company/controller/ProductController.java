@@ -16,8 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 public class ProductController {
     @Autowired
     private ProductService productService;
-
-    @PostMapping("/adm")
+    @PostMapping("/seller")
     public ResponseEntity<ProductDTO> create(@RequestBody ProductCreateDTO dto,
                                              HttpServletRequest request) {
         Integer profileId = HttpHeaderUtil.getId(request, ProfileRole.SELLER);
@@ -25,11 +24,19 @@ public class ProductController {
         return ResponseEntity.ok().body(response);
     }
 
-    @PutMapping("/adm/status/{id}")
+    @PutMapping("/seller/status/{id}")
     public ResponseEntity<Void> changeStatus(@PathVariable("id") String praductId,
                                              HttpServletRequest request) {
         Integer pId = HttpHeaderUtil.getId(request, ProfileRole.SELLER);
         productService.updateByStatus(praductId, pId);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/seller/delete/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable("id") String praductId,
+                                             HttpServletRequest request) {
+        Integer pId = HttpHeaderUtil.getId(request, ProfileRole.SELLER);
+        productService.deleteByProduct(praductId, pId);
         return ResponseEntity.ok().build();
     }
 }

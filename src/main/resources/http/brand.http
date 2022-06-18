@@ -1,12 +1,12 @@
-POST http://localhost:8081/brand/admin
+POST http://localhost:8082/brand/admin
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1MjE1NDksImV4cCI6MTY1NTUyNTE0OSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxLCJyb2xlIjoiQURNSU4ifQ.7LUxrt4SHeZiZa3YgWJwC82xYBziiXtZ_ah53Iq7o8k
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1NjQxNDIsImV4cCI6MTY1NTU2Nzc0MiwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxLCJyb2xlIjoiQURNSU4ifQ.XiyK2UGPpyQmy8GkFA9AgP5EVf750DSq0SFH4YB3G40
 
 {
-  "name" : "Tugmachali"
+  "name" : "iPhone"
 }
-### "brandParentId" : 1
+###
 
-GET http://localhost:8081/brand/admin
+GET http://localhost:8082/brand/admin
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1NDc2NjcsImV4cCI6MTY1NTU1MTI2NywiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxLCJyb2xlIjoiQURNSU4ifQ.SzPKUNPi_YiHtMHesEj6lzos0doWGLvLr_8sy9Z5wxM
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1NjA0NDksImV4cCI6MTY1NTU2NDA0OSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxLCJyb2xlIjoiQURNSU4ifQ._ZzCCmPxP7hxoT9MZvpbPXP8gj1IhQyqTJU-0YpqQSM

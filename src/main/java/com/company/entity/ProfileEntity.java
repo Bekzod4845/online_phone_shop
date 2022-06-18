@@ -30,6 +30,7 @@ public class ProfileEntity {
     @Column(name = "status",nullable = false)
     @Enumerated(EnumType.STRING)
     private ProfileStatus status;
+
     @Column(name = "role",nullable = false)
     @Enumerated(EnumType.STRING)
     private ProfileRole role;
@@ -41,6 +42,8 @@ public class ProfileEntity {
 
     @Column(name = "created_date")
     private LocalDateTime createdDate = LocalDateTime.now();
+
+
     @Column
     private Boolean visible = Boolean.TRUE;
 }

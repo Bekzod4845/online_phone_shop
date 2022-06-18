@@ -7,6 +7,7 @@ import com.company.entity.CategoryEntity;
 import com.company.entity.ProductEntity;
 import com.company.entity.ProfileEntity;
 import com.company.enums.ProductStatus;
+import com.company.exp.BadRequestException;
 import com.company.exp.ItemNotFoundException;
 import com.company.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,12 @@ public class ProductService {
     private ProductRepository productRepository;
     public ProductDTO create(ProductCreateDTO dto, Integer profileId) {
         ProductEntity entity = new ProductEntity();
+        Optional<ProductEntity> optional= productRepository.findByModel(dto.getModel());
+        if (optional.isPresent()){
+           throw new BadRequestException("model is wrong");
+        }
         entity.setModel(dto.getModel());
+
         entity.setAnalysis(dto.getAnalysis());
         entity.setTechnicalSpecification(dto.getTechnicalSpecification());
         entity.setMemory(dto.getMemory());
@@ -45,10 +51,8 @@ public class ProductService {
         seller.setId(profileId);
         entity.setSeller(seller);
         entity.setStatus(ProductStatus.NOT_ON_SALE);
-
         productRepository.save(entity);
         productColorService.create(entity, dto.getColorList()); // color
-
         ProductDTO productDTO = new ProductDTO();
         productDTO.setModel(entity.getModel());
         productDTO.setAnalysis(entity.getAnalysis());
@@ -57,21 +61,35 @@ public class ProductService {
         productDTO.setMemory(entity.getMemory());
         productDTO.setTechnicalSpecification(entity.getTechnicalSpecification());
         productDTO.setStatus(entity.getStatus());
-
         return productDTO;
     }
+
+
+
     public void updateByStatus(String productId, Integer pId) {
         Optional<ProductEntity> optional = productRepository.findById(productId);
-
         if (optional.isEmpty()) {
             throw new ItemNotFoundException("Product not found ");
         }
-
         ProductEntity product = optional.get();
         if (product.getStatus().equals(ProductStatus.NOT_ON_SALE)) {
             productRepository.changeStatusToOnSale(productId, pId, ProductStatus.ON_SALE, LocalDateTime.now());
         } else if (product.getStatus().equals(ProductStatus.ON_SALE)) {
             productRepository.changeStatusNotOnSale(productId, ProductStatus.NOT_ON_SALE);
+        }
+
+    }
+
+    public void deleteByProduct(String productId, Integer pId) {
+        Optional<ProductEntity> optional = productRepository.findById(productId);
+        if (optional.isEmpty()) {
+            throw new ItemNotFoundException("Product not found ");
+        }
+        ProductEntity product = optional.get();
+        if (product.getVisible().equals(false)) {
+            productRepository.deleteByProductVisible(productId, pId);
+        } else if (product.getVisible().equals(true)) {
+            productRepository.deleteByNotProductVisible(productId);
         }
 
     }
