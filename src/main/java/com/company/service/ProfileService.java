@@ -37,14 +37,14 @@ public class ProfileService {
         return dto;
     }
 
-    public void update(Integer profileId, ProfileDTO dto) {
+    public void update(String profileId, ProfileDTO dto) {
         ProfileEntity entity = get(profileId);
         entity.setName(dto.getName());
         entity.setSurname(dto.getSurname());
         profileRepository.save(entity);
     }
 
-    public ProfileEntity get(Integer id) {
+    public ProfileEntity get(String id) {
         return profileRepository.findById(id).orElseThrow(() -> {
             throw new ItemNotFoundException("Profile Not found");
         });
@@ -77,14 +77,14 @@ public class ProfileService {
 
     }
 
-    public void profileBlock(Integer id) {
+    public void profileBlock(String id) {
         ProfileEntity entity = get(id);
         entity.setStatus(entity.getStatus().equals(ProfileStatus.ACTIVE) ? ProfileStatus.NOT_ACTIVE : ProfileStatus.ACTIVE);
         System.out.println("success change profile status");
         profileRepository.save(entity);
     }
 
-    public void profileDelete(Integer id) {
+    public void profileDelete(String id) {
         ProfileEntity entity = get(id);
         entity.setVisible(!entity.getVisible());
         System.out.println("success  profile delete");

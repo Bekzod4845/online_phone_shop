@@ -8,6 +8,5 @@ import java.util.Optional;
 
 
 public interface BrendRepository extends PagingAndSortingRepository<BrandEntity, Integer> {
-
     Optional<BrandEntity> findByName(String name);
 }

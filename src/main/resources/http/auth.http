@@ -1,11 +1,11 @@
-GET http://localhost:8082/init/initAdmin
+GET http://localhost:8085/init/initAdmin
 
 ###login  phonenumber
 POST http://localhost:8082/auth/login
 Content-Type: application/json
 
 {
-  "phoneNumber": "7777"
+  "phoneNumber": "5555"
 }
 
 ###registration user

@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface ProfileRepository extends CrudRepository<ProfileEntity,Integer> {
     Optional<ProfileEntity> findByPhoneNumber(String number);
+
+    Optional<ProfileEntity> findById(String id);
 }

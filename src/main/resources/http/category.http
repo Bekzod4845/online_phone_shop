@@ -21,4 +21,4 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1NjA0NDksImV4cCI6MTY1NT
 
 ###get category list users in current language
 GET http://localhost:8082/category/public
-Accept-Language: UZ
+Accept-Language: EN

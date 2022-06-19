@@ -24,7 +24,7 @@ public class ProfileController {
         return ResponseEntity.ok(profileDTO);
     }
     @PutMapping ("/admin/{id}")
-    public ResponseEntity<ProfileDTO> update(@PathVariable("id") Integer id,
+    public ResponseEntity<ProfileDTO> update(@PathVariable("id") String id,
                                              @RequestBody ProfileDTO dto,
                                              HttpServletRequest request) {
         HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
@@ -33,7 +33,7 @@ public class ProfileController {
     }
 
     @PutMapping("/admin/profileBlock/{id}")
-    public ResponseEntity<ProfileDTO> profileBlock(@PathVariable("id") Integer id,
+    public ResponseEntity<ProfileDTO> profileBlock(@PathVariable("id") String id,
                                                    HttpServletRequest request) {
         HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
         profileService.profileBlock(id);
@@ -41,7 +41,7 @@ public class ProfileController {
     }
 
     @DeleteMapping ("/admin/{id}")
-    public ResponseEntity<ProfileDTO> profileDelete(@PathVariable("id") Integer id,
+    public ResponseEntity<ProfileDTO> profileDelete(@PathVariable("id") String id,
                                                     HttpServletRequest request) {
         HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
         profileService.profileDelete(id);
@@ -51,7 +51,7 @@ public class ProfileController {
     @PutMapping("/update")
     public ResponseEntity<ProfileDTO> detailUpdate(@RequestBody ProfileDTO dto,
                                                    HttpServletRequest request) {
-        Integer id = HttpHeaderUtil.getId(request);
+        String id = HttpHeaderUtil.getId(request);
         profileService.update(id, dto);
         return ResponseEntity.ok().build();
     }

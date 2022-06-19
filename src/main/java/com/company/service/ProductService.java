@@ -49,7 +49,7 @@ public class ProductService {
 
 
 
-    public ProductDTO create(ProductCreateDTO dto, Integer profileId) {
+    public ProductDTO create(ProductCreateDTO dto, String profileId) {
         ProductEntity entity = new ProductEntity();
         Optional<ProductEntity> optional= productRepository.findByModel(dto.getModel());
         if (optional.isPresent()){
@@ -90,7 +90,7 @@ public class ProductService {
     }
 
 
-    public void updateByStatus(String productId, Integer pId) {
+    public void updateByStatus(String productId, String pId) {
         Optional<ProductEntity> optional = productRepository.findById(productId);
         if (optional.isEmpty()) {
             throw new ItemNotFoundException("Product not found ");
@@ -104,7 +104,7 @@ public class ProductService {
 
     }
 
-    public void deleteByProduct(String productId, Integer pId) {
+    public void deleteByProduct(String productId, String pId) {
         Optional<ProductEntity> optional = productRepository.findById(productId);
         if (optional.isEmpty()) {
             throw new ItemNotFoundException("Product not found ");

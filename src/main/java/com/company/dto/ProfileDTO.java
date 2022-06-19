@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProfileDTO {
 
-    private Integer id;
+    private String id;
 
     private String name;
 

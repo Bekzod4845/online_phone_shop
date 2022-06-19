@@ -13,12 +13,11 @@ import java.util.List;
 public class ProductColorService {
     @Autowired
     private ProductColorRepository productColorRepository;
-
     public void create(ProductEntity product, List<Integer> colorList) {
-        for (Integer productColorId : colorList) {
+        for (Integer productId : colorList) {
             ProductColorEntity productColorEntity = new ProductColorEntity();
             productColorEntity.setProduct(product);
-            productColorEntity.setColor(new ColorEntity(productColorId));
+            productColorEntity.setColor(new ColorEntity(productId));
             productColorRepository.save(productColorEntity);
         }
     }

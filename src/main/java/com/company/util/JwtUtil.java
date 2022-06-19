@@ -13,7 +13,7 @@ import java.util.Date;
 public class JwtUtil {
     private static final String secretKey = "Sekratniy_kalit";
 
-    public static String encode(Integer id, ProfileRole role) {
+    public static String encode(String id, ProfileRole role) {
         JwtBuilder jwtBuilder = Jwts.builder();
         jwtBuilder.setIssuedAt(new Date()); // 18:58:00
         jwtBuilder.setExpiration(new Date(System.currentTimeMillis() + (60 * 60 * 1000))); // 19:58:00
@@ -26,20 +26,20 @@ public class JwtUtil {
         return jwt;
     }
 
-    public static Integer decode(String token) {
+    public static String decode(String token) {
         Claims claims = Jwts.parser()
                 .setSigningKey(secretKey)
                 .parseClaimsJws(token)
                 .getBody();
-        Integer id = (Integer) claims.get("id");
+        String id = (String) claims.get("id");
         return id;
     }
-    public static Integer decode(String token, ProfileRole requiredRole) {
+    public static String decode(String token, ProfileRole requiredRole) {
         Claims claims = Jwts.parser()
                 .setSigningKey(secretKey)
                 .parseClaimsJws(token)
                 .getBody();
-        Integer id = (Integer) claims.get("id");
+        String id = (String) claims.get("id");
         String role = (String) claims.get("role");
 
         if (!requiredRole.equals(ProfileRole.valueOf(role))) {
@@ -53,7 +53,7 @@ public class JwtUtil {
                 .setSigningKey(secretKey)
                 .parseClaimsJws(token)
                 .getBody();
-        Integer id = (Integer) claims.get("id");
+        String id = (String) claims.get("id");
         String role = (String) claims.get("role");
 
         return new JwtDTO(id, ProfileRole.valueOf(role));

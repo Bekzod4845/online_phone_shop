@@ -3,6 +3,7 @@ package com.company.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,8 +15,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class CategoryEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    private String id;
+
     @Column(unique = true,nullable = false)
     private String key;
     @Column(name = "name_uz",nullable = false)
@@ -33,7 +36,7 @@ public class CategoryEntity {
     @Column
     private Boolean visible = Boolean.TRUE;
 
-    public CategoryEntity(Integer id) {
+    public CategoryEntity(String id) {
         this.id = id;
     }
 }

@@ -41,7 +41,7 @@ public class ProductController {
     @PostMapping("/seller")
     public ResponseEntity<ProductDTO> create(@RequestBody ProductCreateDTO dto,
                                              HttpServletRequest request) {
-        Integer profileId = HttpHeaderUtil.getId(request, ProfileRole.SELLER);
+        String profileId = HttpHeaderUtil.getId(request, ProfileRole.SELLER);
         ProductDTO response = productService.create(dto, profileId);
         return ResponseEntity.ok().body(response);
     }
@@ -49,7 +49,7 @@ public class ProductController {
     @PutMapping("/seller/status/{id}")
     public ResponseEntity<Void> changeStatus(@PathVariable("id") String praductId,
                                              HttpServletRequest request) {
-        Integer pId = HttpHeaderUtil.getId(request, ProfileRole.SELLER);
+        String pId = HttpHeaderUtil.getId(request, ProfileRole.SELLER);
         productService.updateByStatus(praductId, pId);
         return ResponseEntity.ok().build();
     }
@@ -57,7 +57,7 @@ public class ProductController {
     @DeleteMapping("/seller/delete/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable("id") String praductId,
                                              HttpServletRequest request) {
-        Integer pId = HttpHeaderUtil.getId(request, ProfileRole.SELLER);
+        String pId = HttpHeaderUtil.getId(request, ProfileRole.SELLER);
         productService.deleteByProduct(praductId, pId);
         return ResponseEntity.ok().build();
     }

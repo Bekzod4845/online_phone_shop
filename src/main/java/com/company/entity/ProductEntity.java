@@ -66,6 +66,9 @@ public class ProductEntity {
     @Column
     private Boolean visible = Boolean.TRUE;
 
+    public ProductEntity(String id) {
+        this.id = id;
+    }
 
     public ProductEntity(String id, String model, Double price) {
         this.id = id;

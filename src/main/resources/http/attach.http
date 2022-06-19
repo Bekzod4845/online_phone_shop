@@ -1,0 +1,12 @@
+POST http://localhost:8085/attach/upload?file
+Content-Type: multipart/form-data; boundary=a ;image/jpeg
+
+
+--a
+Content-Disposition: form-data; name="file"; filename="a.jpg"
+
+// The 'input.txt' file will be uploaded
+< /users/qoraxonovbekzod/Desktop/a.jpg
+
+
+

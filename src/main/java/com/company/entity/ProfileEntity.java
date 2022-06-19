@@ -4,7 +4,9 @@ import com.company.enums.Language;
 import com.company.enums.ProfileRole;
 import com.company.enums.ProfileStatus;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,10 +15,12 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "profile")
+@NoArgsConstructor
 public class ProfileEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    private String id;
 
     @Column(nullable = false)
     private String name;
@@ -43,7 +47,10 @@ public class ProfileEntity {
     @Column(name = "created_date")
     private LocalDateTime createdDate = LocalDateTime.now();
 
-
     @Column
     private Boolean visible = Boolean.TRUE;
+
+    public ProfileEntity(String id) {
+        this.id = id;
+    }
 }

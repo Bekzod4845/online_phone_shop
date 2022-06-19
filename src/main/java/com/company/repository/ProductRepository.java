@@ -18,7 +18,7 @@ public interface ProductRepository extends PagingAndSortingRepository<ProductEnt
     @Modifying
     @Transactional
     @Query("update ProductEntity a set a.status =:status, a.dateOnSale =:time, a.seller.id=:pid where a.id=:productId")
-    void changeStatusToOnSale(@Param("productId") String productId,@Param("pid") Integer pId,
+    void changeStatusToOnSale(@Param("productId") String productId,@Param("pid") String pId,
                               @Param("status") ProductStatus status,@Param("time") LocalDateTime time);
     @Modifying
     @Transactional
@@ -31,7 +31,7 @@ public interface ProductRepository extends PagingAndSortingRepository<ProductEnt
     @Modifying
     @Transactional
     @Query("update ProductEntity a set  a.visible =true ,a.seller.id=:pid where a.id=:productId")
-    void deleteByProductVisible(@Param("productId") String productId, @Param("pid") Integer pId);
+    void deleteByProductVisible(@Param("productId") String productId, @Param("pid") String pId);
     @Modifying
     @Transactional
     @Query("update ProductEntity a set a.visible = false ,a.dateOnSale = null where a.id=:productId")

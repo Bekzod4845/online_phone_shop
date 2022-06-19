@@ -61,7 +61,7 @@ public class CategoryService {
 
     public List<CategoryDTO> getList(Language lang) {
 
-        Iterable<CategoryEntity> all = categoryRepository.findAllByVisible(true);
+        List<CategoryEntity> all = categoryRepository.findAllByVisible(true);
         List<CategoryDTO> dtoList = new LinkedList<>();
 
         all.forEach(categoryEntity -> {
