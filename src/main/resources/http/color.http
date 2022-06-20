@@ -1,14 +1,14 @@
 ### create color in Admin
-POST http://localhost:8082/color/admin
+POST http://localhost:8085/color/admin
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1NzgyODgsImV4cCI6MTY1NTU4MTg4OCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxLCJyb2xlIjoiQURNSU4ifQ.4ZD-6FVrmQhMpVDmvObXSDqc_r3XbqNG3VNawVqpU-g
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU2NjU5NTgsImV4cCI6MTY1NTY2OTU1OCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MTdkMTE0ODAxODE3ZDEyMTQ2NjAwMDAiLCJyb2xlIjoiQURNSU4ifQ.N2K4Kot2qeLyu70_RqOx6YYuJrnoG4WFNP0UjoVU6AU
 
 {
-  "key" : "Qora",
-  "nameUz" : "Qora_uz",
-  "nameRu" : "Qora_uz",
-  "nameEn" : "Qora_en",
-  "code" : "grwwwrggg"
+  "key" : "Oq",
+  "nameUz" : "Oq_uz",
+  "nameRu" : "Oq_uz",
+  "nameEn" : "Oq_en",
+  "code" : "daedaeda"
 }
 
 ### get color list in admin

@@ -5,7 +5,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.Optional;
 
-public interface AttachRepository extends PagingAndSortingRepository<AttachEntity,Integer> {
+public interface AttachRepository extends PagingAndSortingRepository<AttachEntity,String> {
 
-    Optional<AttachEntity> findById(String id);
 }

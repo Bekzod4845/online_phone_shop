@@ -1,5 +1,6 @@
 package com.company.repository;
 
+import com.company.entity.ProductAttachmentEntity;
 import com.company.entity.ProductColorEntity;
 import org.springframework.data.repository.CrudRepository;
 

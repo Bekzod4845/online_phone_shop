@@ -18,7 +18,7 @@ public class ProductCreateDTO {
     private Integer memory;
     private Double price;
     private String technicalSpecification;
-    private Integer categoryId;
-    private Integer categoryParentId;
+    private String categoryId;
+    private String categoryParentId;
     private List<Integer> colorList;
 }

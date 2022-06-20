@@ -1,14 +1,14 @@
 
 ### cerate brand in Admin
-POST http://localhost:8082/brand/admin
+POST http://localhost:8085/brand/admin
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1ODk4MjksImV4cCI6MTY1NTU5MzQyOSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxLCJyb2xlIjoiQURNSU4ifQ.wUO6BRGNEshy1dbsbiMii9gM81ZCKgl021oFNbm9d_M
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU2NjE4MTUsImV4cCI6MTY1NTY2NTQxNSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MTdkMTE0ODAxODE3ZDEyMTQ2NjAwMDAiLCJyb2xlIjoiQURNSU4ifQ.553N21WOJFZmYH0wU-_3AV1RitgTPNb4LNxNfH1HSc8
 
 {
-  "name" : "Samsung"
+  "name" : "NOKIA"
 }
 
 ### get brand list in admin
-GET http://localhost:8082/brand/admin
+GET http://localhost:8085/brand/admin
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1NzgyODgsImV4cCI6MTY1NTU4MTg4OCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxLCJyb2xlIjoiQURNSU4ifQ.4ZD-6FVrmQhMpVDmvObXSDqc_r3XbqNG3VNawVqpU-g
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU2NjE4MTUsImV4cCI6MTY1NTY2NTQxNSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MTdkMTE0ODAxODE3ZDEyMTQ2NjAwMDAiLCJyb2xlIjoiQURNSU4ifQ.553N21WOJFZmYH0wU-_3AV1RitgTPNb4LNxNfH1HSc8

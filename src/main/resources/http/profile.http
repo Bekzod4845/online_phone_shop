@@ -1,0 +1,21 @@
+PUT http://localhost:8085/profile/admin/ff808081817f524001817f52e6a70001
+Content-Type:application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU3MTU0NjksImV4cCI6MTY1NTcxOTA2OSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MTdmNTI0MDAxODE3ZjUyOGJjMzAwMDAiLCJyb2xlIjoiQURNSU4ifQ.xkx8anAIUdMS_D7myiQvm4SjgpsmQipOdfHNAvvXWAI
+
+{
+  "name" : "efafefeeaf",
+  "surname" : "aefafaef",
+  "phoneNumber" : "67768686"
+}
+###
+POST http://localhost:8085/profile/admin/create
+Content-Type:application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU3MTU0NjksImV4cCI6MTY1NTcxOTA2OSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MTdmNTI0MDAxODE3ZjUyOGJjMzAwMDAiLCJyb2xlIjoiQURNSU4ifQ.xkx8anAIUdMS_D7myiQvm4SjgpsmQipOdfHNAvvXWAI
+
+{
+"name" : "Alisher",
+"surname" : "Alish",
+"phoneNumber" : "222"
+}
+
+

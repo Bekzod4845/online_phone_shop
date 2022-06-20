@@ -1,7 +1,7 @@
 package com.company.repository;
 
-import com.company.entity.ProductAttachmentsEntity;
+import com.company.entity.ProductAttachmentEntity;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface ProductAttachmentRepository extends PagingAndSortingRepository<ProductAttachmentsEntity,Integer> {
+public interface ProductAttachmentRepository extends PagingAndSortingRepository<ProductAttachmentEntity,Integer> {
 }

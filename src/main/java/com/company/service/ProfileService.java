@@ -37,11 +37,18 @@ public class ProfileService {
         return dto;
     }
 
-    public void update(String profileId, ProfileDTO dto) {
-        ProfileEntity entity = get(profileId);
-        entity.setName(dto.getName());
-        entity.setSurname(dto.getSurname());
-        profileRepository.save(entity);
+    public void update(String profileId, ProfileDTO dto) {;
+        Optional<ProfileEntity> optional = profileRepository.findById(profileId);
+        if (optional.isEmpty()){
+            throw new BadRequestException("User Not Fount");
+        }
+        ProfileEntity profileEntity = optional.get();
+        profileEntity.setName(dto.getName());
+        profileEntity.setSurname(dto.getSurname());
+        profileEntity.setPhoneNumber(dto.getPhoneNumber());
+        profileRepository.save(profileEntity);
+      //  profileRepository.update(profileId,dto.getName(),dto.getSurname(),dto.getPhoneNumber());
+
     }
 
     public ProfileEntity get(String id) {

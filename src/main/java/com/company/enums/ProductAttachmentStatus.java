@@ -1,5 +1,5 @@
 package com.company.enums;
 
-public enum AttachStatus {
+public enum ProductAttachmentStatus {
     ACTIVE,NOT_ACTIVE
 }

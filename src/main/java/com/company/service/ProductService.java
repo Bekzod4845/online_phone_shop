@@ -2,10 +2,7 @@ package com.company.service;
 
 import com.company.dto.ProductCreateDTO;
 import com.company.dto.ProductDTO;
-import com.company.entity.BrandEntity;
-import com.company.entity.CategoryEntity;
-import com.company.entity.ProductEntity;
-import com.company.entity.ProfileEntity;
+import com.company.entity.*;
 import com.company.enums.ProductStatus;
 import com.company.exp.BadRequestException;
 import com.company.exp.ItemNotFoundException;
@@ -46,9 +43,6 @@ public class ProductService {
         return new PageImpl(dtoList,pageable, all.getTotalElements());
     }
 
-
-
-
     public ProductDTO create(ProductCreateDTO dto, String profileId) {
         ProductEntity entity = new ProductEntity();
         Optional<ProductEntity> optional= productRepository.findByModel(dto.getModel());
@@ -66,10 +60,10 @@ public class ProductService {
         BrandEntity brand = brandService.get(dto.getBrandId());
         entity.setBrend(brand);
         if (dto.getCategoryId() != null) {
-            CategoryEntity category = categoryService.get(dto.getCategoryId());
+            CategoryEntity category = categoryService.getId(dto.getCategoryId());
             entity.setCategory(category);
         }
-        CategoryEntity categoryParent = categoryService.get(dto.getCategoryParentId());
+        CategoryEntity categoryParent = categoryService.getId(dto.getCategoryParentId());
         entity.setCategoryParent(categoryParent);
 
         ProfileEntity seller = new ProfileEntity();
@@ -77,7 +71,7 @@ public class ProductService {
         entity.setSeller(seller);
         entity.setStatus(ProductStatus.NOT_ON_SALE);
         productRepository.save(entity);
-        productColorService.create(entity, dto.getColorList()); // color
+        productColorService.create(entity,dto.getColorList()); // color
         ProductDTO productDTO = new ProductDTO();
         productDTO.setModel(entity.getModel());
         productDTO.setAnalysis(entity.getAnalysis());

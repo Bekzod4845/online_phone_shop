@@ -52,7 +52,7 @@ public class CategoryController {
 
 
     @PutMapping("/admin/{id}")
-    private ResponseEntity<?> update(@PathVariable("id") Integer id,
+    private ResponseEntity<?> update(@PathVariable("id") String id,
                                      @RequestBody CategoryDTO dto,
                                      HttpServletRequest request) {
         HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
@@ -61,7 +61,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/admin/{id}")
-    private ResponseEntity<?> delete(@PathVariable("id") Integer id,
+    private ResponseEntity<?> delete(@PathVariable("id") String id,
                                      HttpServletRequest request) {
         HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
         categoryService.delete(id);

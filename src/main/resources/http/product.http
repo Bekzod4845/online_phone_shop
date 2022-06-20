@@ -1,28 +1,28 @@
 
 ### product create Profile role Seller
-POST http://localhost:8082/product/seller
+POST http://localhost:8085/product/seller
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1ODk5ODAsImV4cCI6MTY1NTU5MzU4MCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoyLCJyb2xlIjoiU0VMTEVSIn0.-gVVSI7p30YGrGvhToTpkkSWYhUpz4DzR1NqcXsmuNk
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU3MDM4MDMsImV4cCI6MTY1NTcwNzQwMywiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MTdmNTI0MDAxODE3ZjUzMzRkNzAwMDIiLCJyb2xlIjoiVVNFUiJ9.RvURCikBZ14srhl5-HC6Sksp_DBgkDYVEf9-7U4aVo4
 
 {
-  "model": "MacBook Air",
+  "model": "iPhone 13 Pro Max",
   "analysis": "cffkjefbekjfwkfbowe",
   "technicalSpecification": "dasdasdasdasdasd",
-  "ram": 8,
+  "ram": 6,
   "memory": 256,
   "price" : 9000,
-  "brandId" : 1,
-  "categoryParentId" : 1,
-  "categoryId" : 4,
+  "brandId" : 2,
+  "categoryParentId" : "ff808081817d215201817d2521ee0001",
+  "categoryId" : "ff808081817d605301817d663c2a0001",
   "colorList": [
     1,
-    2
+    3
   ]
 
 }
 
 ### product status update On sale OR Not on sale in product Id  role Seller
-PUT http://localhost:8082/product/seller/status/ff8080818178deca018178e742aa0001
+PUT http://localhost:8085/product/seller/status/ff8080818178deca018178e742aa0001
 Content-Type: application/json
 Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1ODk5ODAsImV4cCI6MTY1NTU5MzU4MCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoyLCJyb2xlIjoiU0VMTEVSIn0.-gVVSI7p30YGrGvhToTpkkSWYhUpz4DzR1NqcXsmuNk
 
@@ -30,7 +30,7 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1ODk5ODAsImV4cCI6MTY1NT
 ###product visible update ture or false in product Id   role Seller
 DELETE http://localhost:8082/product/seller/delete/ff808081817852420181786295a40002
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1Njk1MDQsImV4cCI6MTY1NTU3MzEwNCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjo0LCJyb2xlIjoiU0VMTEVSIn0.7D_APJh4LPRvvkuiFvh5S_fnVAKZYBHadd_vNHl6V1M
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU3MDM4MDMsImV4cCI6MTY1NTcwNzQwMywiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MTdmNTI0MDAxODE3ZjUzMzRkNzAwMDIiLCJyb2xlIjoiVVNFUiJ9.RvURCikBZ14srhl5-HC6Sksp_DBgkDYVEf9-7U4aVo4
 
 ###pagination product
 GET http://localhost:8082/product/pagination?page=1&size=2
@@ -38,11 +38,11 @@ Content-Type: application/json
 
 
 ###get product list brand and categorykey on sale in users
-GET http://localhost:8082/product/list/?brand=Apple&categoryKey=Mac
+GET http://localhost:8085/product/list/?brand=Apple&categoryKey=Mac
 
 
 
 ###get product order by date on sale in users
-GET http://localhost:8082/product/list
+GET http://localhost:8085/product/list
 
 

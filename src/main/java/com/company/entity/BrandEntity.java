@@ -18,7 +18,6 @@ public class BrandEntity {
     @Column(unique = true,nullable = false)
     private String name;
 
-
     @Column(name = "created_date")
     private LocalDateTime createdDate = LocalDateTime.now();
 

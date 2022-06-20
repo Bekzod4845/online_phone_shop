@@ -1,24 +1,25 @@
 
 ### create category and parentCategory in Admin
-POST http://localhost:8082/category/admin
+POST http://localhost:8085/category/admin
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1ODkxMjUsImV4cCI6MTY1NTU5MjcyNSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoyLCJyb2xlIjoiU0VMTEVSIn0.WX9DUlnYs84e1XSU4ViK7fYNWtSuOr-lKmnqn7p-AOE
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU2NjU5NTgsImV4cCI6MTY1NTY2OTU1OCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MTdkMTE0ODAxODE3ZDEyMTQ2NjAwMDAiLCJyb2xlIjoiQURNSU4ifQ.N2K4Kot2qeLyu70_RqOx6YYuJrnoG4WFNP0UjoVU6AU
 
 {
-  "key" : "Tablets",
-  "nameUz" : "Planshetlar",
-  "nameRu" : "Таблетки",
-  "nameEn" : "Tablets"
+  "key" : "iPhone",
+  "nameUz" : "iPhone",
+  "nameRu" : "iPhone",
+  "nameEn" : "iPhone",
+  "categoryParentId" : "ff808081817d215201817d2521ee0001"
 }
 
 
 
 ###get category list in Admin
-GET http://localhost:8082/category/admin
+GET http://localhost:8085/category/admin
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1NjA0NDksImV4cCI6MTY1NTU2NDA0OSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxLCJyb2xlIjoiQURNSU4ifQ._ZzCCmPxP7hxoT9MZvpbPXP8gj1IhQyqTJU-0YpqQSM
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU2NjE4MTUsImV4cCI6MTY1NTY2NTQxNSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MTdkMTE0ODAxODE3ZDEyMTQ2NjAwMDAiLCJyb2xlIjoiQURNSU4ifQ.553N21WOJFZmYH0wU-_3AV1RitgTPNb4LNxNfH1HSc8
 
 
 ###get category list users in current language
-GET http://localhost:8082/category/public
-Accept-Language: EN
+GET http://localhost:8085/category/public
+Accept-Language: UZ

@@ -1,10 +1,8 @@
 package com.company.service;
 
 import com.company.entity.AttachEntity;
-import com.company.enums.AttachStatus;
 import com.company.exp.BadRequestException;
 import com.company.repository.AttachRepository;
-import org.hashids.Hashids;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -25,7 +23,7 @@ public class AttachService {
     private String uploadFolder;
 
 
-    public void  save (MultipartFile multipartFile){
+    public void  save(MultipartFile multipartFile){
         AttachEntity attachEntity = new AttachEntity();
         attachEntity.setName(multipartFile.getOriginalFilename());
         attachEntity.setOriginalName(getOriginalName(multipartFile.getOriginalFilename()));

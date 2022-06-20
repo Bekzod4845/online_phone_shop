@@ -12,6 +12,6 @@ public class CategoryDTO {
     private String nameRu;
     private String nameEn;
     private String name;
-    private Integer categoryParentId;
+    private String categoryParentId;
 
 }

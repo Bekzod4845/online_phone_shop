@@ -24,12 +24,12 @@ public class ProfileController {
         return ResponseEntity.ok(profileDTO);
     }
     @PutMapping ("/admin/{id}")
-    public ResponseEntity<ProfileDTO> update(@PathVariable("id") String id,
-                                             @RequestBody ProfileDTO dto,
+    public ResponseEntity<String> update(@PathVariable("id") String id,
+                                            @RequestBody ProfileDTO dto,
                                              HttpServletRequest request) {
         HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
         profileService.update(id, dto);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Success");
     }
 
     @PutMapping("/admin/profileBlock/{id}")
@@ -48,13 +48,13 @@ public class ProfileController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<ProfileDTO> detailUpdate(@RequestBody ProfileDTO dto,
-                                                   HttpServletRequest request) {
-        String id = HttpHeaderUtil.getId(request);
-        profileService.update(id, dto);
-        return ResponseEntity.ok().build();
-    }
+//    @PutMapping("/updateDetail")
+//    public ResponseEntity<ProfileDTO> detailUpdate(@RequestBody ProfileDTO dto,
+//                                                   HttpServletRequest request) {
+//        String id = HttpHeaderUtil.getId(request);
+//        profileService.update(id, dto);
+//        return ResponseEntity.ok().build();
+//    }
 
     @GetMapping("/admin")
     public ResponseEntity<?> getAll(HttpServletRequest request){

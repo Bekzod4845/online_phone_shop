@@ -40,7 +40,7 @@ public class CategoryService {
         return dto;
     }
 
-    public void update(Integer id, CategoryDTO dto) {
+    public void update(String id, CategoryDTO dto) {
         isValid(dto);
         CategoryEntity entity = get(id);
         entity.setKey(dto.getKey());
@@ -52,7 +52,7 @@ public class CategoryService {
 
     }
 
-    public void delete(Integer id) {
+    public void delete(String id) {
         CategoryEntity entity = get(id);
         entity.setVisible(false);
         System.out.println("success delete category");
@@ -66,6 +66,7 @@ public class CategoryService {
 
         all.forEach(categoryEntity -> {
             CategoryDTO dto = new CategoryDTO();
+            dto.setId(categoryEntity.getId());
             dto.setKey(categoryEntity.getKey());
             switch (lang) {
                 case RU:
@@ -94,7 +95,7 @@ public class CategoryService {
         return dtoList;
     }
 
-    public CategoryEntity get(Integer id) {
+    public CategoryEntity getId(String id) {
         return categoryRepository.findById(id).orElseThrow(() -> {
             throw new ItemNotFoundException("Category Not found");
         });

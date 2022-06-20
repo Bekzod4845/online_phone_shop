@@ -1,7 +1,7 @@
 GET http://localhost:8085/init/initAdmin
 
 ###login  phonenumber
-POST http://localhost:8082/auth/login
+POST http://localhost:8085/auth/login
 Content-Type: application/json
 
 {
@@ -9,22 +9,23 @@ Content-Type: application/json
 }
 
 ###registration user
-POST http://localhost:8082/auth/registration
+POST http://localhost:8085/profile/admin/
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU3MDM2MTUsImV4cCI6MTY1NTcwNzIxNSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MTdmNTI0MDAxODE3ZjUyOGJjMzAwMDAiLCJyb2xlIjoiQURNSU4ifQ.yUIJnhIA848S4dds2IAhgFjghgdt8_Ge3vf1pzPsc_4
 
 {
-  "name" : "VAli",
-  "surname" : "Afadfae",
-  "phoneNumber": "7777"
+  "name" : "faeefeafa",
+  "surname" : "aegfaeg",
+  "phoneNumber": "3333"
 }
 
 
 
 
 ###create seller in Admin
-POST http://localhost:8082/profile/admin/create
+POST http://localhost:8085/profile/admin/create
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1ODEyNzEsImV4cCI6MTY1NTU4NDg3MSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoxLCJyb2xlIjoiQURNSU4ifQ.MvaqJ8Jvt-dKFjLtFVCdg2dyGjzwZkG29dgOLRWYAzw
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU2NjU5NTgsImV4cCI6MTY1NTY2OTU1OCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MTdkMTE0ODAxODE3ZDEyMTQ2NjAwMDAiLCJyb2xlIjoiQURNSU4ifQ.N2K4Kot2qeLyu70_RqOx6YYuJrnoG4WFNP0UjoVU6AU
 
 {
   "name" : "VAli",

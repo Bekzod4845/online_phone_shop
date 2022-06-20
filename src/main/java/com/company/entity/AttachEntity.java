@@ -1,6 +1,5 @@
 package com.company.entity;
 
-import com.company.enums.AttachStatus;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -9,7 +8,6 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "attach")
@@ -28,19 +26,16 @@ public class AttachEntity {
     @Column(name = "file_size",nullable = false)
     private  long fileSize;
 
-
     @Column
     private String  uploadPath;
 
     @Column(name = "content_type",nullable = false)
     private String contentType;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private AttachStatus status;
 
-    @Column(name = "created_date",nullable = false)
-    private LocalDateTime createdDate = LocalDateTime.now();
-
+    public AttachEntity(String attachId) {
     }
+
+
+}
 
