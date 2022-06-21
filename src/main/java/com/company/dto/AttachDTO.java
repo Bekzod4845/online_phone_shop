@@ -15,7 +15,6 @@ public class AttachDTO {
     private String hashId;
     private String  uploadPath;
     private String contentType;
-    private AttachStatus status;
     private LocalDateTime createdDate ;
 
 }

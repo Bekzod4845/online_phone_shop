@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Optional;
 
@@ -23,24 +24,22 @@ public class AttachService {
     private String uploadFolder;
 
 
-    public void  save(MultipartFile multipartFile){
+    public void  upload(MultipartFile multipartFile){
         AttachEntity attachEntity = new AttachEntity();
-        attachEntity.setName(multipartFile.getOriginalFilename());
-        attachEntity.setOriginalName(getOriginalName(multipartFile.getOriginalFilename()));
+        attachEntity.setOriginalName(multipartFile.getOriginalFilename());
+        attachEntity.setExtension(getExtension(multipartFile.getOriginalFilename()));
         attachEntity.setFileSize(multipartFile.getSize());
         attachEntity.setContentType(multipartFile.getContentType());
-        attachEntity.setStatus(AttachStatus.NOT_ACTIVE);
+
         attachRepository.save(attachEntity);
         Date now = new Date();
-        File uploadFolder = new File(String.format("%s/upload_files/%d/%d/%d/",this.uploadFolder,1900+now.getYear(),1 + now.getMonth(),now.getDate()));
+        File uploadFolder = new File(String.format("%s/upload_files/%d/",this.uploadFolder,getYmDString()));
         if (!uploadFolder.exists() && uploadFolder.mkdirs()){
             System.out.println("created mkdirs");
         }
         attachEntity.setId(attachEntity.getId());
-        attachEntity.setUploadPath(String.format("upload_files/%d/%d/%d/%s.%s"
-                ,1900+now.getYear()
-                ,1 + now.getMonth(),
-                now.getDate(),
+        attachEntity.setUploadPath(String.format("upload_files/%d/%s.%s",
+                getYmDString(),
                 attachEntity.getId(),
                 attachEntity.getOriginalName()));
         attachRepository.save(attachEntity);
@@ -54,7 +53,14 @@ public class AttachService {
         }
     }
 
-    private String getOriginalName(String fileName){
+    public String getYmDString() {
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
+        int day = Calendar.getInstance().get(Calendar.DATE);
+
+        return year + "/" + month + "/" + day; // 2022/04/23
+    }
+    private String getExtension(String fileName){
         String name = null;
         if (fileName != null && !fileName.isEmpty()){
             int dot = fileName.lastIndexOf(".");
@@ -67,12 +73,12 @@ public class AttachService {
 
 
     @Transactional(readOnly = true)
-    public AttachEntity getByHashId(String id){
-        Optional<AttachEntity> byHashId = attachRepository.findById(id);
-        if (byHashId.isEmpty()){
+    public AttachEntity getById(String id){
+        Optional<AttachEntity> byId = attachRepository.findById(id);
+        if (byId.isEmpty()){
             throw new BadRequestException("not fount file");
         }
-        return byHashId.get();
+        return byId.get();
     }
 
 

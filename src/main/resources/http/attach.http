@@ -1,5 +1,5 @@
 POST http://localhost:8085/attach/upload?file
-Content-Type: multipart/form-data; boundary=a ;image/jpeg
+Content-Type: multipart/form-data; boundary=a ;
 
 
 --a

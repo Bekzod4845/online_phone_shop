@@ -18,7 +18,7 @@ public class AttachEntity {
     private String id;
 
     @Column(nullable = false)
-    private String name;
+    private String extension;
 
     @Column(name = "original_name",nullable = false)
     private String originalName;

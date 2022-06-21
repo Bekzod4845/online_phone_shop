@@ -29,30 +29,30 @@ public class AttachController {
     private String uploadFolder;
 
     @PostMapping("/upload")
-    public ResponseEntity<?> create(
+    public ResponseEntity<?> upload(
             @RequestParam(name = "file") MultipartFile file) {
-        attachService.save(file);
+        attachService.upload(file);
         return ResponseEntity.ok().body(file.getOriginalFilename()+" Successfully created");
     }
 
-    @GetMapping("/preview/{hashId}")
-    public ResponseEntity<?> donlond(@PathVariable("hashId") String hashId) throws MalformedURLException {
-        AttachEntity byHashId = attachService.getByHashId(hashId);
+    @GetMapping("/preview/{id}")
+    public ResponseEntity<?> preview(@PathVariable("id") String id) throws MalformedURLException {
+        AttachEntity byId = attachService.getById(id);
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION,"inline; fileName=\"" + URLEncoder.encode(byHashId.getName()))
-                .contentType(MediaType.parseMediaType(byHashId.getContentType()))
-                .contentLength(byHashId.getFileSize())
-                .body(new FileUrlResource(String.format("%s/%s",uploadFolder,byHashId.getUploadPath())));
+                .header(HttpHeaders.CONTENT_DISPOSITION,"inline; fileName=\"" + URLEncoder.encode(byId.getExtension()))
+                .contentType(MediaType.parseMediaType(byId.getContentType()))
+                .contentLength(byId.getFileSize())
+                .body(new FileUrlResource(String.format("%s/%s",uploadFolder,byId.getUploadPath())));
     }
 
-    @GetMapping("/download/{hashId}")
-    public ResponseEntity<?> download(@PathVariable("hashId") String hashId) throws MalformedURLException {
-        AttachEntity byHashId = attachService.getByHashId(hashId);
+    @GetMapping("/download/{id}")
+    public ResponseEntity<?> download(@PathVariable("id") String id) throws MalformedURLException {
+        AttachEntity byId = attachService.getById(id);
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; fileName=\"" + URLEncoder.encode(byHashId.getName()))
-                .contentType(MediaType.parseMediaType(byHashId.getContentType()))
-                .contentLength(byHashId.getFileSize())
-                .body(new FileUrlResource(String.format("%s/%s",uploadFolder,byHashId.getUploadPath())));
+                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; fileName=\"" + URLEncoder.encode(byId.getExtension()))
+                .contentType(MediaType.parseMediaType(byId.getContentType()))
+                .contentLength(byId.getFileSize())
+                .body(new FileUrlResource(String.format("%s/%s",uploadFolder,byId.getUploadPath())));
     }
 
 
