@@ -1,4 +1,4 @@
-POST http://localhost:8085/attach/upload?file
+POST http://localhost:8085/attach/upload
 Content-Type: multipart/form-data; boundary=a ;
 
 
@@ -7,6 +7,9 @@ Content-Disposition: form-data; name="file"; filename="a.jpg"
 
 // The 'input.txt' file will be uploaded
 < /users/qoraxonovbekzod/Desktop/a.jpg
+
+###
+GET http://localhost:8085/attach/download/ff8080818186ba04018186c55c820001
 
 
 

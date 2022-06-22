@@ -1,20 +1,31 @@
 package com.company.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
+// PROJECT NAME Kun_Uz
+// TIME 17:02
+// MONTH 06
+// DAY 20
+
 @Getter
 @Setter
+@ToString
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@NoArgsConstructor
+@AllArgsConstructor
 public class AttachDTO {
+
     private String id;
-    private String name;
     private String originalName;
-    private  long fileSize;
-    private String hashId;
-    private String  uploadPath;
-    private String contentType;
-    private LocalDateTime createdDate ;
+    private String extension;
+    private Long size;
+    private String path;
+    private LocalDateTime createdDate;
+    private String url;
+    private String downloadUrl;
+
 
 }

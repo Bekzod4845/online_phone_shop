@@ -25,8 +25,7 @@ public class ProductService {
     @Autowired
     private CategoryService categoryService;
 
-    @Autowired
-    private ProductColorService productColorService;
+
     @Autowired
     private ProductRepository productRepository;
 
@@ -58,7 +57,7 @@ public class ProductService {
         entity.setPrice(dto.getPrice());
 
         BrandEntity brand = brandService.get(dto.getBrandId());
-        entity.setBrend(brand);
+        entity.setBrand(brand);
         if (dto.getCategoryId() != null) {
             CategoryEntity category = categoryService.getId(dto.getCategoryId());
             entity.setCategory(category);
@@ -71,7 +70,6 @@ public class ProductService {
         entity.setSeller(seller);
         entity.setStatus(ProductStatus.NOT_ON_SALE);
         productRepository.save(entity);
-        productColorService.create(entity,dto.getColorList()); // color
         ProductDTO productDTO = new ProductDTO();
         productDTO.setModel(entity.getModel());
         productDTO.setAnalysis(entity.getAnalysis());

@@ -19,7 +19,7 @@ import java.util.List;
 public class ColorController {
     @Autowired
     private ColorService colorService;
-
+   //Public
     @GetMapping("/public")
     public ResponseEntity<List<ColorDTO>> getList(@RequestHeader(value = "Accept-Language" ,defaultValue = "UZ") Language lang) {
         List<ColorDTO> list = colorService.getList(lang);

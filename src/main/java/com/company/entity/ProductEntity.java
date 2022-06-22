@@ -51,8 +51,8 @@ public class ProductEntity {
     private CategoryEntity categoryParent;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "brend_id")
-    private BrandEntity brend;
+    @JoinColumn(name = "brand_id")
+    private BrandEntity brand;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)

@@ -16,13 +16,18 @@ public class ProductAttachmentEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @JoinColumn(name = "product_color_id")
+    @JoinColumn(name = "product_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private ProductColorEntity productColor;
+    private ProductEntity product;
+
+    @JoinColumn(name = "color_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ColorEntity color;
 
     @JoinColumn(name = "attachment_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private AttachEntity attach;
+
 
     @Column(name = "created_date")
     private LocalDateTime createdDate = LocalDateTime.now();

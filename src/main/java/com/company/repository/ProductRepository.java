@@ -42,7 +42,7 @@ public interface ProductRepository extends PagingAndSortingRepository<ProductEnt
 
     @Query("SELECT new ProductEntity(p.id,p.model,p.price) " +
             " from ProductEntity as p inner join p.category as c  " +
-            " inner join p.brend as b " +
+            " inner join p.brand as b " +
             " where p.visible = true and c.key =:categoryKey and p.status = 'ON_SALE' and b.name =:brand order by p.dateOnSale")
     List<ProductEntity> findLastPhone(@Param("brand") String brand,@Param("categoryKey") String categoryKey);
 

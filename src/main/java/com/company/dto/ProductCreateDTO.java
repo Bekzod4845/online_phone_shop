@@ -20,5 +20,4 @@ public class ProductCreateDTO {
     private String technicalSpecification;
     private String categoryId;
     private String categoryParentId;
-    private List<Integer> colorList;
 }
