@@ -58,7 +58,6 @@ public class TypesController {
         typesService.update(id, dto);
         return ResponseEntity.ok().body("Succsessfully updated");
     }
-
     @DeleteMapping("/admin/{id}")
     private ResponseEntity<?> delete(@PathVariable("id") Integer id,
                                      HttpServletRequest request) {

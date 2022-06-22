@@ -38,8 +38,6 @@ public interface ProductRepository extends PagingAndSortingRepository<ProductEnt
     void deleteByNotProductVisible(@Param("productId") String productId);
 
 
-
-
     @Query("SELECT new ProductEntity(p.id,p.model,p.price) " +
             " from ProductEntity as p inner join p.category as c  " +
             " inner join p.brand as b " +

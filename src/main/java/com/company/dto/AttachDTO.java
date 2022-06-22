@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 // PROJECT NAME Kun_Uz
 // TIME 17:02
@@ -17,7 +19,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AttachDTO {
-
     private String id;
     private String originalName;
     private String extension;
@@ -27,5 +28,5 @@ public class AttachDTO {
     private String url;
     private String downloadUrl;
 
-
+    List<String> uuidList = new ArrayList<>();
 }

@@ -8,10 +8,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Objects;
 
 // PROJECT NAME Kun_Uz
@@ -25,9 +27,9 @@ public class AttachController {
     private AttachService attachService;
 
     @PostMapping("/upload")
-    public ResponseEntity<AttachDTO> upload(@RequestParam("file") MultipartFile file) {
-        AttachDTO fileName = attachService.saveToSystem(file);
-        return ResponseEntity.ok().body(fileName);
+    public ResponseEntity<?> upload(MultipartHttpServletRequest file) throws IOException {
+        List<String> attachIdList = attachService.saveToSystem(file);
+        return ResponseEntity.ok().body(attachIdList);
     }
 
     @GetMapping(value = "/open/{fileName}", produces = MediaType.IMAGE_PNG_VALUE)

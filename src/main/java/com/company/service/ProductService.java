@@ -122,6 +122,12 @@ public class ProductService {
         return dtoList;
     }
 
+    public ProductEntity getId(String id) {
+        return productRepository.findById(id).orElseThrow(() -> {
+            throw new ItemNotFoundException("Product Not found");
+        });
+    }
+
     public List<ProductDTO> getLast5ArticleBy() {
         Pageable pageable = PageRequest.of(0, 8);
         Page<ProductEntity> articlePage = productRepository.findLastBy(pageable);

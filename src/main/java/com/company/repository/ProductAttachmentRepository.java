@@ -1,7 +1,10 @@
 package com.company.repository;
 
-import com.company.entity.ProductAttachmentEntity;
+import com.company.entity.ProductAttachEntity;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface ProductAttachmentRepository extends PagingAndSortingRepository<ProductAttachmentEntity,Integer> {
+import java.util.Optional;
+
+public interface ProductAttachmentRepository extends PagingAndSortingRepository<ProductAttachEntity,String> {
+
 }

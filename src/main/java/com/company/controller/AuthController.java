@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
     @Autowired
     private AuthService authService;
-
     @PostMapping("/login")
     public ResponseEntity<ProfileDTO> login(@RequestBody AuthDTO dto) {
         ProfileDTO profileDTO = authService.login(dto);

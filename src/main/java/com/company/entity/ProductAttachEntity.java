@@ -1,20 +1,22 @@
 package com.company.entity;
 
-import com.company.enums.ProductAttachmentStatus;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "product_attachment")
-public class ProductAttachmentEntity {
+public class ProductAttachEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    private String id;
 
     @JoinColumn(name = "product_id")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -24,9 +26,9 @@ public class ProductAttachmentEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private ColorEntity color;
 
-    @JoinColumn(name = "attachment_id")
+    @JoinColumn(name = "attachments_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private AttachEntity attach;
+    private AttachEntity attaches;
 
 
     @Column(name = "created_date")
@@ -35,7 +37,6 @@ public class ProductAttachmentEntity {
     @Column
     private Boolean visible = Boolean.TRUE;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private ProductAttachmentStatus status;
+
+
 }

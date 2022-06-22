@@ -4,6 +4,7 @@ package com.company.entity;
 // MONTH 06
 // DAY 20
 
+import com.company.enums.ProductAttachmentStatus;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -28,4 +29,5 @@ public class AttachEntity {
     private String path;
     @Column(name = "created_date", nullable = false)
     private LocalDateTime createdDate = LocalDateTime.now();
+
 }

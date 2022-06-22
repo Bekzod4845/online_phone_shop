@@ -14,10 +14,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU3MDM4MDMsImV4cCI6MTY1N
   "brandId" : 2,
   "categoryParentId" : "ff808081817d215201817d2521ee0001",
   "categoryId" : "ff808081817d605301817d663c2a0001",
-  "colorList": [
-    1,
-    3
-  ]
+
 
 }
 

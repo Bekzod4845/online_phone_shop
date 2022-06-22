@@ -2,6 +2,9 @@ package com.company.service;
 
 import com.company.dto.AttachDTO;
 import com.company.entity.AttachEntity;
+import com.company.entity.ColorEntity;
+import com.company.entity.ProductAttachEntity;
+import com.company.entity.ProductEntity;
 import com.company.exp.ItemNotFoundException;
 import com.company.repository.AttachRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -22,56 +26,56 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Calendar;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 
 @Service
 public class AttachService {
 
-    @Autowired
-    private AttachRepository attachRepository;
-
     @Value("${attach.folder}")
     private String attachFolder;
     @Value("${server.url}")
     private String serverUrl;
+    @Autowired
+    private AttachRepository attachRepository;
 
-    public AttachDTO saveToSystem(MultipartFile file) {
-        try {
-            // zari.jpg
-            String pathFolder = getYmDString(); // 2022/06/20
-            String uuid = UUID.randomUUID().toString(); //  asdas-dasdas-dasdasd-adadsd
-            String extension = getExtension(file.getOriginalFilename()); // jpg
+    public List<String> saveToSystem(MultipartHttpServletRequest request) throws IOException {
+        Iterator<String> fileNames = request.getFileNames();
+        List<String> uuidList = new ArrayList<>();
+        while (fileNames.hasNext()) {
+            String fileName = fileNames.next();
+            List<MultipartFile> files = request.getFiles(fileName);
+            for (MultipartFile file : files) {
+                if (file != null) {
 
-            String fileName = uuid + "." + extension; //  asdas-dasdas-dasdasd-adadsd.jpg
+                    String pathFolder = getYmDString();
+                    String uuid = UUID.randomUUID().toString();
+                    String extension = getExtension(Objects.requireNonNull(file.getOriginalFilename())); // jpg
+                    String newFileName = uuid + "." + extension;
 
+                    File folder = new File(attachFolder + pathFolder);
+                    if (!folder.exists()) {
+                        folder.mkdirs();
+                    }
+                    byte[] bytes = file.getBytes();
 
-            File folder = new File(attachFolder + pathFolder); // attaches/2022/06/20
-            if (!folder.exists()) {
-                folder.mkdirs();
+                    Path path = Paths.get(attachFolder + pathFolder + "/" + newFileName);
+                    Files.write(path, bytes);
+
+                    AttachEntity entity = new AttachEntity();
+                    entity.setId(uuid);
+                    entity.setExtension(extension);
+                    entity.setOriginalName(file.getOriginalFilename());
+                    entity.setSize(file.getSize());
+                    entity.setPath(pathFolder);
+                    attachRepository.save(entity);
+                    uuidList.add(entity.getId());
+                    AttachDTO attachDTO = new AttachDTO();
+                    attachDTO.setUuidList(uuidList);
+                    return uuidList;
+                }
+
             }
-            byte[] bytes = file.getBytes();
-            // attaches/2022/06/20/asdas-dasdasd-asdas0asdas.jpg
-            Path path = Paths.get(attachFolder + pathFolder + "/" + fileName);
-            Files.write(path, bytes);
-
-            AttachEntity entity = new AttachEntity();
-            entity.setId(uuid);
-            entity.setExtension(extension);
-            entity.setOriginalName(file.getOriginalFilename());
-            entity.setSize(file.getSize());
-            entity.setPath(pathFolder);
-            attachRepository.save(entity);
-
-            AttachDTO dto = new AttachDTO();
-            dto.setUrl(serverUrl+"/attach/open/"+entity.getId());
-            dto.setDownloadUrl(serverUrl+"/attach/download/"+entity.getId());
-
-            return dto;
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         return null;
     }
@@ -112,7 +116,6 @@ public class AttachService {
         }
         return new byte[0];
     }
-
     public ResponseEntity<Resource> download(String id) {
         try {
             AttachEntity entity = get(id);
@@ -149,6 +152,7 @@ public class AttachService {
     }
 
 
+
     public String getExtension(String fileName) { // mp3/jpg/npg/mp4.....
         int lastIndex = fileName.lastIndexOf(".");
         return fileName.substring(lastIndex + 1);
@@ -161,7 +165,6 @@ public class AttachService {
 
         return year + "/" + month + "/" + day; // 2022/04/23
     }
-
 
     public String getTmDasUrlLink(String folder) { //  2022/06/20
         String[] arr = folder.split("/");
@@ -185,5 +188,5 @@ public class AttachService {
         return attachFolder + entity.getPath() + "/" + entity.getId() + "." + entity.getExtension();
     }
 
-
+    
 }
