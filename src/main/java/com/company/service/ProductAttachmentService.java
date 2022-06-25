@@ -1,9 +1,6 @@
 package com.company.service;
 
-import com.company.dto.AttachDTO;
-import com.company.dto.ColorDTO;
-import com.company.dto.ProductAttachDTO;
-import com.company.dto.ProductDTO;
+import com.company.dto.*;
 import com.company.entity.AttachEntity;
 import com.company.entity.ColorEntity;
 import com.company.entity.ProductAttachEntity;
@@ -78,5 +75,22 @@ public class ProductAttachmentService {
     public void updateChangeStatus(String id) {
         ProductAttachEntity productAttachEntity = get(id);
         productAttachmentRepository.updateVisible(productAttachEntity.getId());
+    }
+
+    public List<ShortInfoProduct> getProductAttachList() {
+        Iterable<ProductAttachEntity> all = productAttachmentRepository.findAll();
+        List<ShortInfoProduct>dtoList = new ArrayList<>();
+
+         all.forEach(productAttachEntity -> {
+             ShortInfoProduct shortInfoProduct = new ShortInfoProduct();
+             shortInfoProduct.setModel(productAttachEntity.getProduct().getModel());
+             shortInfoProduct.setPrice(productAttachEntity.getProduct().getPrice());
+             shortInfoProduct.setTitle(productAttachEntity.getProduct().getAnalysis());
+             shortInfoProduct.setImageUrl(serverUrl + "/attach/open/"+productAttachEntity.getAttach().getId());
+
+             dtoList.add(shortInfoProduct);
+         });
+
+         return dtoList;
     }
 }

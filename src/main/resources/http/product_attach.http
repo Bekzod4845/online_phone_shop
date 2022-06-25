@@ -1,12 +1,12 @@
 POST http://localhost:8085/productAdd/admin/productAddAttach
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTYxNTM1MjksImV4cCI6MTY1NjE1NzEyOSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiOGE4YTgxY2I4MTlhMzZjNTAxODE5YTM2ZTk4ZDAwMDAiLCJyb2xlIjoiQURNSU4ifQ.kPF6vUUZi1ZQCeht5aGlL3naBkkSYgDSBO9W3jB-RzU
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTYxNTgzMzIsImV4cCI6MTY1NjE2MTkzMiwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiOGE4YTgxY2I4MTlhMzZjNTAxODE5YTM2ZTk4ZDAwMDAiLCJyb2xlIjoiQURNSU4ifQ.NQd1WI2Take82XDsg-hPc70wXc652otTL2I2mzXoma8
 
 {
   "productId": "8a8a81cb819a6c9b01819a7040150002",
   "colorId": "1",
   "attachList": [
-    "ae5bc582-f87c-4699-91a8-d92371659410","81909be4-220c-470b-8866-40a48747478c","d0a8414b-17b3-4fa6-912d-85eeb20e1314"]
+    "94203238-bddf-4038-a20e-33a489cd6f55"]
 }
 
 
@@ -14,3 +14,9 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTYxNTM1MjksImV4cCI6MTY1Nj
 PUT http://localhost:8085/productAdd/admin/update/8a8a81cb819a8f2901819a8f55bb0000
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTYxNTM1MjksImV4cCI6MTY1NjE1NzEyOSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiOGE4YTgxY2I4MTlhMzZjNTAxODE5YTM2ZTk4ZDAwMDAiLCJyb2xlIjoiQURNSU4ifQ.kPF6vUUZi1ZQCeht5aGlL3naBkkSYgDSBO9W3jB-RzU
+
+
+
+
+###public getProductList
+GET http://localhost:8085/productAdd/list

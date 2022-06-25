@@ -14,4 +14,6 @@ public class ProductAttachDTO {
     private String productId;
     private Integer colorId;
     private List<String>attachList;
+    private AttachDTO attachDTO;
+    private ProductDTO productDTO;
 }

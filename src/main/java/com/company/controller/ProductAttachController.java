@@ -1,6 +1,7 @@
 package com.company.controller;
 
 import com.company.dto.ProductAttachDTO;
+import com.company.dto.ShortInfoProduct;
 import com.company.enums.ProfileRole;
 import com.company.service.ProductAttachmentService;
 import com.company.util.HttpHeaderUtil;
@@ -37,6 +38,15 @@ public class ProductAttachController {
         productAttachmentService.updateChangeStatus(id);
         return ResponseEntity.ok().body("successfully visible product");
     }
+
+
+    @GetMapping("/list")
+    public ResponseEntity<?>list(){
+       List<ShortInfoProduct> productAttachDTOS=  productAttachmentService.getProductAttachList();
+        return ResponseEntity.ok().body(productAttachDTOS);
+    }
+
+
 
 
 
