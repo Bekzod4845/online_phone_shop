@@ -1,15 +1,10 @@
 package com.company.controller;
 
-import com.company.dto.AuthDTO;
-import com.company.dto.ProfileDTO;
-import com.company.dto.RegistrationDTO;
+import com.company.dto.*;
 import com.company.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
@@ -24,9 +19,25 @@ public class AuthController {
 
     @PostMapping("/registration")
     public ResponseEntity<ProfileDTO> registration(@RequestBody RegistrationDTO dto) {
-        ProfileDTO profileDTO = authService.registration(dto);
-        return ResponseEntity.ok(profileDTO);
+        ProfileDTO registration = authService.registration(dto);
+        return ResponseEntity.ok(registration);
     }
+
+    @PostMapping("/verification")
+    public ResponseEntity<String> login(@RequestBody VerificationDTO dto) {
+        String response = authService.verification(dto);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/resend/{phone}")
+    public ResponseEntity<ResponseInfoDTO> resendSms(@PathVariable("phone") String phone) {
+        ResponseInfoDTO response = authService.resendSms(phone);
+        return ResponseEntity.ok(response);
+    }
+
+
+
+
 
 
 }

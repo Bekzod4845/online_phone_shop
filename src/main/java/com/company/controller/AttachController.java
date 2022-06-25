@@ -10,16 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Objects;
 
-// PROJECT NAME Kun_Uz
-// TIME 17:06
-// MONTH 06
-// DAY 20
+import java.io.IOException;
+import java.util.List;
+
+
+
 @RestController
 @RequestMapping("/attach")
 public class AttachController {
@@ -27,9 +23,9 @@ public class AttachController {
     private AttachService attachService;
 
     @PostMapping("/upload")
-    public ResponseEntity<?> upload(MultipartHttpServletRequest file) throws IOException {
-        List<AttachDTO> attachDTOList = attachService.saveToSystem(file);
-        return ResponseEntity.ok().body(attachDTOList);
+    public ResponseEntity<?> upload(MultipartFile file) throws IOException {
+        AttachDTO attachDTO = attachService.saveToSystem(file);
+        return ResponseEntity.ok().body(attachDTO);
     }
 
     @GetMapping(value = "/open/{fileName}", produces = MediaType.IMAGE_PNG_VALUE)

@@ -1,33 +1,37 @@
 package com.company.service;
 
-import com.company.dto.AuthDTO;
-import com.company.dto.ProfileDTO;
-import com.company.dto.RegistrationDTO;
+import com.company.dto.*;
 import com.company.entity.ProfileEntity;
+import com.company.entity.SmsEntity;
 import com.company.enums.ProfileRole;
 import com.company.enums.ProfileStatus;
 import com.company.exp.BadRequestException;
 import com.company.repository.ProfileRepository;
+import com.company.repository.SmsRepository;
 import com.company.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
 public class AuthService {
     @Autowired
     private ProfileRepository profileRepository;
+
+    @Autowired
+    private SmsRepository smsRepository;
+
+    @Autowired
+    private SmsService smsService;
+
     public ProfileDTO login(AuthDTO authDTO) {
         Optional<ProfileEntity> optional = profileRepository.findByPhoneNumber(authDTO.getPhoneNumber());
         if (optional.isEmpty()) {
             throw new BadRequestException("User not found");
         }
         ProfileEntity profile = optional.get();
-
-        if (!profile.getStatus().equals(ProfileStatus.ACTIVE)) {
-            throw new BadRequestException("No ruxsat");
-        }
 
         ProfileDTO dto = new ProfileDTO();
         dto.setName(profile.getName());
@@ -36,24 +40,60 @@ public class AuthService {
 
         return dto;
     }
+
     public ProfileDTO registration(RegistrationDTO dto) {
         Optional<ProfileEntity> optional = profileRepository.findByPhoneNumber(dto.getPhoneNumber());
         if (optional.isPresent()) {
             throw new BadRequestException("User already exists");
         }
+
         ProfileEntity entity = new ProfileEntity();
         entity.setName(dto.getName());
         entity.setSurname(dto.getSurname());
-        entity.setPhoneNumber(dto.getPhoneNumber());
-        entity.setStatus(ProfileStatus.ACTIVE);
+        entity.setStatus(ProfileStatus.NOT_ACTIVE);
         entity.setRole(ProfileRole.USER);
+        entity.setPhoneNumber(dto.getPhoneNumber());
         profileRepository.save(entity);
+        ProfileDTO dto1 = new ProfileDTO();
+        dto1.setName(entity.getName());
+        dto1.setSurname(entity.getSurname());
+        dto1.setJwt(JwtUtil.encode(entity.getId(), entity.getRole()));
+       // smsService.sendRegistrationSms(dto.getPhoneNumber());
 
-        ProfileDTO responseDTO = new ProfileDTO();
-        responseDTO.setName(dto.getName());
-        responseDTO.setSurname(dto.getSurname());
-        responseDTO.setPhoneNumber(dto.getPhoneNumber());
-        responseDTO.setJwt(JwtUtil.encode(entity.getId(), entity.getRole()));
-        return responseDTO;
+
+        return dto1;
+    }
+
+
+    public String verification(VerificationDTO dto) {
+
+        Optional<SmsEntity> optional = smsRepository.findTopByPhoneOrderByCreatedDateDesc(dto.getPhone());
+        if (optional.isEmpty()) {
+            return "Phone Not Found";
+        }
+
+        SmsEntity sms = optional.get();
+        LocalDateTime validDate = sms.getCreatedDate().plusMinutes(1);
+
+        if (!sms.getCode().equals(dto.getCode())) {
+            return "Code Invalid";
+        }
+        if (validDate.isBefore(LocalDateTime.now())) {
+            return "Time is out";
+        }
+
+        profileRepository.updateStatusByPhone(dto.getPhone(), ProfileStatus.ACTIVE);
+        return "Verification Done";
+    }
+
+
+
+    public ResponseInfoDTO resendSms(String phone) {
+        Long count = smsService.getSmsCount(phone);
+        if (count >= 4) {
+            return new ResponseInfoDTO(-1, "Limit dan o'tib getgan");
+        }
+        smsService.sendRegistrationSms(phone);
+        return new ResponseInfoDTO(1);
     }
 }

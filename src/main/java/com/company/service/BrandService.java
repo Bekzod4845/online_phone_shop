@@ -1,6 +1,6 @@
 package com.company.service;
 
-import com.company.dto.BrandDTO;
+import com.company.dto.brand.BrandDTO;
 import com.company.entity.BrandEntity;
 import com.company.exp.BadRequestException;
 import com.company.exp.ItemNotFoundException;

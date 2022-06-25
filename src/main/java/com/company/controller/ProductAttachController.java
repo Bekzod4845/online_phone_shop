@@ -19,8 +19,8 @@ public class ProductAttachController {
     @PostMapping("/admin/productAddAttach")
     public ResponseEntity<?> addProduct(@RequestBody ProductAttachDTO productAttachDTO, HttpServletRequest request){
         HttpHeaderUtil.getId(request, ProfileRole.ADMIN);
-        ProductAttachDTO save = productAttachmentService.save(productAttachDTO);
-        return ResponseEntity.ok(save);
+        productAttachmentService.save(productAttachDTO);
+        return ResponseEntity.ok("Successfully add attach");
     }
 
 
@@ -30,5 +30,14 @@ public class ProductAttachController {
 
         return ResponseEntity.ok().build();
     }
+
+    @PutMapping("/admin/update/{id}")
+    public ResponseEntity<?>update(@PathVariable("id") String id,HttpServletRequest request){
+        HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
+        productAttachmentService.updateChangeStatus(id);
+        return ResponseEntity.ok().body("successfully visible product");
+    }
+
+
 
 }

@@ -1,6 +1,7 @@
 package com.company.dto;
 
 
+import com.company.dto.brand.BrandDTO;
 import com.company.enums.ProductStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;

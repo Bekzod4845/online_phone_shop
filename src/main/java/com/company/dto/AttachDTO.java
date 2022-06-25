@@ -7,10 +7,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-// PROJECT NAME Kun_Uz
-// TIME 17:02
-// MONTH 06
-// DAY 20
+
 
 @Getter
 @Setter

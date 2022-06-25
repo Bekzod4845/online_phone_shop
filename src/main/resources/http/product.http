@@ -2,7 +2,7 @@
 ### product create Profile role Seller
 POST http://localhost:8085/product/seller
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU5MzIxNDUsImV4cCI6MTY1NTkzNTc0NSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MThkMzgyNDAxODE4ZDNlYTMxZTAwMDIiLCJyb2xlIjoiU0VMTEVSIn0.k3lXNJUeMdPks3ziFXPEXO2I7p141OrTr3WM2FrkkNc
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTYxNTMzOTAsImV4cCI6MTY1NjE1Njk5MCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiOGE4YTgxY2I4MTlhNmM5YjAxODE5YTZmMDYyNDAwMDEiLCJyb2xlIjoiU0VMTEVSIn0.pb9RqoIoL9WFNfUSoCw7oXE6wCljQZ0zGqh6CSi41lU
 
 {
   "model": "iPhone 13 Pro Max",
@@ -12,13 +12,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU5MzIxNDUsImV4cCI6MTY1N
   "memory": 256,
   "price" : 9000,
   "brandId" : 1,
-  "categoryId" : "ff808081818d382401818d3a26bc0001"
+  "categoryId" : "8a8a81cb819a6c9b01819a6de26f0000"
 }
 
 ### product status update On sale OR Not on sale in product Id  role Seller
-PUT http://localhost:8085/product/seller/status/ff8080818178deca018178e742aa0001
+PUT http://localhost:8085/product/seller/status/8a8a81cb819a6c9b01819a7040150002
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU1ODk5ODAsImV4cCI6MTY1NTU5MzU4MCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoyLCJyb2xlIjoiU0VMTEVSIn0.-gVVSI7p30YGrGvhToTpkkSWYhUpz4DzR1NqcXsmuNk
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTYxNTYxNjAsImV4cCI6MTY1NjE1OTc2MCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiOGE4YTgxY2I4MTlhNmM5YjAxODE5YTZmMDYyNDAwMDEiLCJyb2xlIjoiU0VMTEVSIn0.enioUXmmr-HtlViF3bRWKKn2r_IVEJNnJNwnnGjg5JE
 
 
 ###product visible update ture or false in product Id   role Seller

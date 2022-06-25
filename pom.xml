@@ -46,6 +46,12 @@
             <artifactId>jjwt</artifactId>
             <version>0.9.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.5.1.Final</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.hashids/hashids -->
 
     </dependencies>

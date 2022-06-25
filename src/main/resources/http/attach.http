@@ -3,12 +3,15 @@ Content-Type: multipart/form-data; boundary=a ;
 
 
 --a
-Content-Disposition: form-data; name="file"; filename="a.jpg"
+Content-Disposition: form-data; name="file"; filename="b.jpg"
 
 // The 'input.txt' file will be uploaded
-< /users/qoraxonovbekzod/Desktop/a.jpg
+< /users/qoraxonovbekzod/Desktop/b.jpg
 
 ###
 DELETE http://localhost:8085/attach/delete/2f9b718d-9f3b-4ce0-a1f7-13a670c26209
+
+###
+GET http://localhost:8085/attach/open/ae5bc582-f87c-4699-91a8-d92371659410
 
 

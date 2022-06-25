@@ -1,6 +1,7 @@
 package com.company.controller;
 
-import com.company.dto.BrandDTO;
+import com.company.dto.brand.BrandDTO;
+
 import com.company.enums.ProfileRole;
 import com.company.service.BrandService;
 import com.company.util.HttpHeaderUtil;
@@ -30,7 +31,7 @@ public class BrandController {
 
     // SECURED
     @PostMapping("/admin")
-    public ResponseEntity<?> create(@RequestBody BrandDTO brandDTO,HttpServletRequest request) {
+    public ResponseEntity<?> create(@RequestBody BrandDTO brandDTO, HttpServletRequest request) {
         HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
         brandService.create(brandDTO);
         return ResponseEntity.ok().body("Successfully created");

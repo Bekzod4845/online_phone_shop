@@ -11,11 +11,7 @@ import java.util.UUID;
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProductAttachDTO {
-    private String id;
     private String productId;
-    private ProductDTO productDTO;
     private Integer colorId;
-    private ColorDTO colorDTO;
-    private List<UUID>attachList;
-    private AttachDTO attachDTO;
+    private List<String>attachList;
 }

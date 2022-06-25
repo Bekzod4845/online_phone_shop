@@ -39,45 +39,39 @@ public class AttachService {
     @Autowired
     private AttachRepository attachRepository;
 
-    public List<AttachDTO> saveToSystem(MultipartHttpServletRequest request) throws IOException {
-        Iterator<String> fileNames = request.getFileNames();
-        List<AttachDTO> attachDTOList = new ArrayList<>();
-        while (fileNames.hasNext()) {
-            String fileName = fileNames.next();
-            List<MultipartFile> files = request.getFiles(fileName);
-            for (MultipartFile file : files) {
-                if (file != null) {
+    public AttachDTO saveToSystem(MultipartFile file) {
+        try {
+            // zari.jpg
+            String pathFolder = getYmDString(); // 2022/06/20
+            String uuid = UUID.randomUUID().toString(); //  asdas-dasdas-dasdasd-adadsd
+            String extension = getExtension(file.getOriginalFilename()); // jpg
 
-                    String pathFolder = getYmDString();
-                    String uuid = UUID.randomUUID().toString();
-                    String extension = getExtension(Objects.requireNonNull(file.getOriginalFilename())); // jpg
-                    String newFileName = uuid + "." + extension;
+            String fileName = uuid + "." + extension; //  asdas-dasdas-dasdasd-adadsd.jpg
 
-                    File folder = new File(attachFolder + pathFolder);
-                    if (!folder.exists()) {
-                        folder.mkdirs();
-                    }
-                    byte[] bytes = file.getBytes();
 
-                    Path path = Paths.get(attachFolder + pathFolder + "/" + newFileName);
-                    Files.write(path, bytes);
-
-                    AttachEntity entity = new AttachEntity();
-                    entity.setId(uuid);
-                    entity.setExtension(extension);
-                    entity.setOriginalName(file.getOriginalFilename());
-                    entity.setSize(file.getSize());
-                    entity.setPath(pathFolder);
-                    attachRepository.save(entity);
-
-                    AttachDTO attachDTO = new AttachDTO();
-                    attachDTO.setId(entity.getId());
-                    attachDTO.setUrl(serverUrl + "/attach/open/"+ entity.getId());
-                    attachDTOList.add(attachDTO);
-                    return attachDTOList;
-                }
-
+            File folder = new File(attachFolder + pathFolder); // attaches/2022/06/20
+            if (!folder.exists()) {
+                folder.mkdirs();
             }
+            byte[] bytes = file.getBytes();
+            // attaches/2022/06/20/asdas-dasdasd-asdas0asdas.jpg
+            Path path = Paths.get(attachFolder + pathFolder + "/" + fileName);
+            Files.write(path, bytes);
+
+            AttachEntity entity = new AttachEntity();
+            entity.setId(uuid);
+            entity.setExtension(extension);
+            entity.setOriginalName(file.getOriginalFilename());
+            entity.setSize(file.getSize());
+            entity.setPath(pathFolder);
+            attachRepository.save(entity);
+
+            AttachDTO dto = new AttachDTO();
+            dto.setUrl(serverUrl + "attach/open/" + entity.getId());
+            // http://localhost:8081/attach/open/8bd17c91-c1ac-494c-800d-dffd61307ef5
+            return dto;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return null;
     }
