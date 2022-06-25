@@ -6,4 +6,5 @@ public interface ProductShortInfo {
     String getId();
     String getModel();
     Double getPrice();
+    String getImageUrl();
 }

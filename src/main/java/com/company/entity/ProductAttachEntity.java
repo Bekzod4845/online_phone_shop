@@ -26,9 +26,9 @@ public class ProductAttachEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private ColorEntity color;
 
-    @JoinColumn(name = "attachments_id")
+    @JoinColumn(name = "attach_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private AttachEntity attaches;
+    private AttachEntity attach;
 
 
     @Column(name = "created_date")

@@ -1,0 +1,10 @@
+POST http://localhost:8085/productAdd/admin/productAddAttach
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTYxMTgxMjMsImV4cCI6MTY1NjEyMTcyMywiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MThkMzgyNDAxODE4ZDM4OWFmZTAwMDAiLCJyb2xlIjoiQURNSU4ifQ.LKh8_bJM7f-y1uT5QczK7je8zoUehBKystwWm4RdX3w
+
+{
+  "productId": "ff808081818d452901818d453fa70000",
+  "colorId": "1",
+  "attachList": [
+    "d911385f-2bd2-480d-96d4-9c2327c184cd"]
+}

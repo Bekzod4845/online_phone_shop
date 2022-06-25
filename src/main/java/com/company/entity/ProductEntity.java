@@ -47,7 +47,7 @@ public class ProductEntity {
     private CategoryEntity category;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_parent_id")
+    @JoinColumn(name = "category_parent_id",nullable = true)
     private CategoryEntity categoryParent;
 
     @ManyToOne(fetch = FetchType.LAZY)

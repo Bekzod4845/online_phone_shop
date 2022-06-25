@@ -2,10 +2,10 @@
 ### cerate brand in Admin
 POST http://localhost:8085/brand/admin
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU2NjE4MTUsImV4cCI6MTY1NTY2NTQxNSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MTdkMTE0ODAxODE3ZDEyMTQ2NjAwMDAiLCJyb2xlIjoiQURNSU4ifQ.553N21WOJFZmYH0wU-_3AV1RitgTPNb4LNxNfH1HSc8
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU5MzE3MDksImV4cCI6MTY1NTkzNTMwOSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MThkMzgyNDAxODE4ZDM4OWFmZTAwMDAiLCJyb2xlIjoiQURNSU4ifQ.26Wh6W70ijykkXiYlOSj43hpL37ZKhdyRJ2Zx1AbprA
 
 {
-  "name" : "NOKIA"
+  "name" : "Apple"
 }
 
 ### get brand list in admin

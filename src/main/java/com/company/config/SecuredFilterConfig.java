@@ -21,6 +21,7 @@ public class SecuredFilterConfig {
         bean.addUrlPatterns("/color/admin/*");
         bean.addUrlPatterns("/brand/admin/*");
         bean.addUrlPatterns("/attach/admin/*");
+        bean.addUrlPatterns("/productAdd/admin/*");
 
         return bean;
     }

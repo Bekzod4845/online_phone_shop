@@ -55,16 +55,10 @@ public class ProductService {
         entity.setMemory(dto.getMemory());
         entity.setRam(dto.getRam());
         entity.setPrice(dto.getPrice());
-
         BrandEntity brand = brandService.get(dto.getBrandId());
         entity.setBrand(brand);
-        if (dto.getCategoryId() != null) {
             CategoryEntity category = categoryService.getId(dto.getCategoryId());
             entity.setCategory(category);
-        }
-        CategoryEntity categoryParent = categoryService.getId(dto.getCategoryParentId());
-        entity.setCategoryParent(categoryParent);
-
         ProfileEntity seller = new ProfileEntity();
         seller.setId(profileId);
         entity.setSeller(seller);

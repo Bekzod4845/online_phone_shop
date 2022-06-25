@@ -39,9 +39,9 @@ public class AttachService {
     @Autowired
     private AttachRepository attachRepository;
 
-    public List<String> saveToSystem(MultipartHttpServletRequest request) throws IOException {
+    public List<AttachDTO> saveToSystem(MultipartHttpServletRequest request) throws IOException {
         Iterator<String> fileNames = request.getFileNames();
-        List<String> uuidList = new ArrayList<>();
+        List<AttachDTO> attachDTOList = new ArrayList<>();
         while (fileNames.hasNext()) {
             String fileName = fileNames.next();
             List<MultipartFile> files = request.getFiles(fileName);
@@ -69,10 +69,12 @@ public class AttachService {
                     entity.setSize(file.getSize());
                     entity.setPath(pathFolder);
                     attachRepository.save(entity);
-                    uuidList.add(entity.getId());
+
                     AttachDTO attachDTO = new AttachDTO();
-                    attachDTO.setUuidList(uuidList);
-                    return uuidList;
+                    attachDTO.setId(entity.getId());
+                    attachDTO.setUrl(serverUrl + "/attach/open/"+ entity.getId());
+                    attachDTOList.add(attachDTO);
+                    return attachDTOList;
                 }
 
             }
@@ -178,7 +180,7 @@ public class AttachService {
         // 2022/06/20/f978a682-a357-4eaf-ac18-ec9482a4e58b.jpg
     }
 
-    private AttachEntity get(String id) {
+    public AttachEntity get(String id) {
         return attachRepository.findById(id).orElseThrow(() -> {
             throw new ItemNotFoundException("Attach Not Found");
         });
@@ -188,5 +190,5 @@ public class AttachService {
         return attachFolder + entity.getPath() + "/" + entity.getId() + "." + entity.getExtension();
     }
 
-    
+
 }

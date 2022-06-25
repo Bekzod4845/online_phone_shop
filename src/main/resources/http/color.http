@@ -1,7 +1,7 @@
 ### create color in Admin
 POST http://localhost:8085/color/admin
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU2NjU5NTgsImV4cCI6MTY1NTY2OTU1OCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MTdkMTE0ODAxODE3ZDEyMTQ2NjAwMDAiLCJyb2xlIjoiQURNSU4ifQ.N2K4Kot2qeLyu70_RqOx6YYuJrnoG4WFNP0UjoVU6AU
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU5MzE3MDksImV4cCI6MTY1NTkzNTMwOSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MThkMzgyNDAxODE4ZDM4OWFmZTAwMDAiLCJyb2xlIjoiQURNSU4ifQ.26Wh6W70ijykkXiYlOSj43hpL37ZKhdyRJ2Zx1AbprA
 
 {
   "key" : "Oq",

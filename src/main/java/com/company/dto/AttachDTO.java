@@ -27,6 +27,4 @@ public class AttachDTO {
     private LocalDateTime createdDate;
     private String url;
     private String downloadUrl;
-
-    List<String> uuidList = new ArrayList<>();
 }

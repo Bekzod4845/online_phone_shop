@@ -27,7 +27,7 @@ public class CategoryEntity {
     private String nameRu;
     @Column(name = "name_en",nullable = false)
     private String nameEn;
-    @JoinColumn(name = "parent_category_id")
+    @JoinColumn(name = "parent_category_id",nullable = true)
     @ManyToOne
     CategoryEntity parentCategory;
 

@@ -6,16 +6,19 @@ package com.company.entity;
 
 import com.company.enums.ProductAttachmentStatus;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "attach")
+@NoArgsConstructor
 public class AttachEntity {
     @Id
     private String id;
@@ -29,5 +32,9 @@ public class AttachEntity {
     private String path;
     @Column(name = "created_date", nullable = false)
     private LocalDateTime createdDate = LocalDateTime.now();
+
+    public AttachEntity(String id) {
+    }
+
 
 }

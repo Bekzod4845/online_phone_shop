@@ -28,8 +28,8 @@ public class AttachController {
 
     @PostMapping("/upload")
     public ResponseEntity<?> upload(MultipartHttpServletRequest file) throws IOException {
-        List<String> attachIdList = attachService.saveToSystem(file);
-        return ResponseEntity.ok().body(attachIdList);
+        List<AttachDTO> attachDTOList = attachService.saveToSystem(file);
+        return ResponseEntity.ok().body(attachDTOList);
     }
 
     @GetMapping(value = "/open/{fileName}", produces = MediaType.IMAGE_PNG_VALUE)
