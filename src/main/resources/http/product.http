@@ -2,15 +2,15 @@
 ### product create Admin
 POST http://localhost:8085/product/seller
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTYxNTMzOTAsImV4cCI6MTY1NjE1Njk5MCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiOGE4YTgxY2I4MTlhNmM5YjAxODE5YTZmMDYyNDAwMDEiLCJyb2xlIjoiU0VMTEVSIn0.pb9RqoIoL9WFNfUSoCw7oXE6wCljQZ0zGqh6CSi41lU
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTYxNjExMTYsImV4cCI6MTY1NjE2NDcxNiwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiOGE4YTgxY2I4MTlhNmM5YjAxODE5YTZmMDYyNDAwMDEiLCJyb2xlIjoiU0VMTEVSIn0.4S6YlpoVq-JrpZsJYvP7qJnmI3REKcK8ypqdf95fkpM
 
 {
-  "model": "iPhone 13 Pro Max",
+  "model": "iPhone 12 Pro ",
   "analysis": "cffkjefbekjfwkfbowe",
   "technicalSpecification": "dasdasdasdasdasd",
-  "ram": 6,
+  "ram": 2,
   "memory": 256,
-  "price" : 9000,
+  "price" : 80,
   "brandId" : 1,
   "categoryId" : "8a8a81cb819a6c9b01819a6de26f0000"
 }

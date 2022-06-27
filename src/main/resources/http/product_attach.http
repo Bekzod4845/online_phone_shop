@@ -3,10 +3,11 @@ Content-Type: application/json
 Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTYxNTgzMzIsImV4cCI6MTY1NjE2MTkzMiwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiOGE4YTgxY2I4MTlhMzZjNTAxODE5YTM2ZTk4ZDAwMDAiLCJyb2xlIjoiQURNSU4ifQ.NQd1WI2Take82XDsg-hPc70wXc652otTL2I2mzXoma8
 
 {
-  "productId": "8a8a81cb819a6c9b01819a7040150002",
+  "productId": "8a8a81cb819ae81601819aeab6dc0003",
   "colorId": "1",
   "attachList": [
-    "94203238-bddf-4038-a20e-33a489cd6f55"]
+    "4e99d749-bf49-4dc9-989f-cb5a23cccdbb"
+    ]
 }
 
 

@@ -5,6 +5,7 @@ import com.company.entity.AttachEntity;
 import com.company.entity.ColorEntity;
 import com.company.entity.ProductAttachEntity;
 import com.company.entity.ProductEntity;
+import com.company.enums.ProductStatus;
 import com.company.exp.BadRequestException;
 import com.company.exp.ItemNotFoundException;
 import com.company.repository.ProductAttachmentRepository;
@@ -12,8 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductAttachmentService {
@@ -34,12 +37,7 @@ public class ProductAttachmentService {
 
 
         ProductEntity productEntity = productService.getId(productAttachDTO.getProductId());
-
-
-
         ColorEntity colorEntity = colorService.get(productAttachDTO.getColorId());
-
-
 //        productAttachDTO.getAttachList().forEach(attachId -> {
 //           AttachEntity attach = attachService.get(String.valueOf(attachId));
 //            boolean exists = productAttachmentRepository.existsAllByAttach(attach);
@@ -93,4 +91,8 @@ public class ProductAttachmentService {
 
          return dtoList;
     }
+
+
+
+
 }

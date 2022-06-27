@@ -15,8 +15,8 @@ public class ProductCreateDTO {
     private Integer brandId;
     private String analysis;
     private Integer ram;
-    private Integer memory;
     private Double price;
+    private Integer memory;
     private String technicalSpecification;
     private String categoryId;
     private String categoryParentId;

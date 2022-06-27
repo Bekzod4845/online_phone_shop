@@ -13,6 +13,7 @@ import java.util.UUID;
 public class ProductAttachDTO {
     private String productId;
     private Integer colorId;
+    private Double price;
     private List<String>attachList;
     private AttachDTO attachDTO;
     private ProductDTO productDTO;
