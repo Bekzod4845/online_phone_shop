@@ -4,6 +4,7 @@ import com.company.dto.brand.BrandDTO;
 import com.company.entity.BrandEntity;
 import com.company.exp.BadRequestException;
 import com.company.exp.ItemNotFoundException;
+import com.company.mapper.BrandMapper.BrandStructMapper;
 import com.company.repository.BrendRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
@@ -18,33 +19,34 @@ public class BrandService {
     @Autowired
     private BrendRepository brendRepository;
 
-    public BrandDTO create(BrandDTO dto) {
+
+    @Autowired
+    private BrandStructMapper brandStructMapper;
+    public void create(BrandDTO dto) {
 
         Optional<BrandEntity> optional = brendRepository.findByName(dto.getName());
         if (optional.isPresent()){
             throw new BadRequestException("brend is exsits");
         }
-
-        BrandEntity entity = new BrandEntity();
-        entity.setName(dto.getName());
-        brendRepository.save(entity);
-        dto.setId(entity.getId());
-        return dto;
+        brendRepository.save(brandStructMapper.bookDTOToBookEntity(dto));
     }
 
     public void update(Integer id, BrandDTO dto) {
-        isValid(dto);
-        BrandEntity entity = get(id);
-        entity.setName(dto.getName());
-        System.out.println("success update brend");
-        brendRepository.save(entity);
-
+        Optional<BrandEntity> optional = brendRepository.findById(id);
+        if (!optional.isPresent()){
+           throw  new  BadRequestException("Not fount brand");
+        }
+        Boolean aBoolean = brendRepository.existsByName(dto.getName());
+        if (aBoolean){
+          throw   new ItemNotFoundException("exsist brend");
+        }
+        BrandEntity entity = optional.get();
+        brendRepository.save(brandStructMapper.bookDTOToBookUpdate(dto,entity));
     }
 
     public void delete(Integer id) {
         BrandEntity entity = get(id);
         entity.setVisible(false);
-        System.out.println("success delete brend");
         brendRepository.save(entity);
     }
     public List<BrandDTO> getListOnlyForAdmin() {
@@ -53,7 +55,7 @@ public class BrandService {
         List<BrandDTO> dtoList = new LinkedList<>();
 
         all.forEach(brandEntity -> {
-            dtoList.add(toDTO(brandEntity));
+            dtoList.add(brandStructMapper.bookEntityToBookDTOFull(brandEntity));
         });
 
        return dtoList;
@@ -61,29 +63,14 @@ public class BrandService {
 
     public BrandEntity get(Integer id) {
         return brendRepository.findById(id).orElseThrow(() -> {
-            throw new ItemNotFoundException("Brend Not found");
+            throw new ItemNotFoundException("Brand Not found");
         });
     }
 
-    public BrandEntity get(String name) {
-        return brendRepository.findByName(name).orElseThrow(() -> {
-            throw new ItemNotFoundException("Brend Not found");
-        });
-    }
 
-    public BrandDTO toDTO(BrandEntity entity) {
-        BrandDTO dto = new BrandDTO();
-        dto.setId(entity.getId());
-        dto.setName(entity.getName());
-        return dto;
-    }
 
-    private void isValid(BrandDTO dto) {
-        if (dto.getName() == null){
-            throw new BadRequestException(" name is wrong ");
-        }
 
-    }
+
 
 
     public PageImpl pagination(int page, int size) {
@@ -94,7 +81,7 @@ public class BrandService {
         List<BrandEntity> list = all.getContent();
         List<BrandDTO> dtoList = new LinkedList<>();
         list.forEach(brandEntity -> {
-            dtoList.add(toDTO(brandEntity));
+            dtoList.add(brandStructMapper.bookEntityToBookDTO(brandEntity));
         });
         return new PageImpl(dtoList,pageable, all.getTotalElements());
     }

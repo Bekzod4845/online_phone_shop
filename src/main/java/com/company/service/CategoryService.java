@@ -5,6 +5,7 @@ import com.company.entity.CategoryEntity;
 import com.company.enums.Language;
 import com.company.exp.BadRequestException;
 import com.company.exp.ItemNotFoundException;
+import com.company.mapper.CategoryMapper.CategoryStructMapper;
 import com.company.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
@@ -18,7 +19,10 @@ import java.util.Optional;
 public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
-    public CategoryDTO create(CategoryDTO dto) {
+
+    @Autowired
+    private CategoryStructMapper categoryStructMapper;
+    public void create(CategoryDTO dto) {
         isValid(dto);
         Optional<CategoryEntity> optional = categoryRepository.findByKey(dto.getKey());
         if (optional.isPresent()){
@@ -29,15 +33,10 @@ public class CategoryService {
             Optional<CategoryEntity> parentCategory = categoryRepository.findById(dto.getCategoryParentId());
             entity1= parentCategory.get();
         }
-        CategoryEntity entity = new CategoryEntity();
-        entity.setKey(dto.getKey());
-        entity.setParentCategory(entity1);
-        entity.setNameUz(dto.getNameUz());
-        entity.setNameEn(dto.getNameEn());
-        entity.setNameRu(dto.getNameRu());
-        categoryRepository.save(entity);
-        dto.setId(entity.getId());
-        return dto;
+        CategoryEntity category = categoryStructMapper.categoryDTOToCategoryEntity(dto);
+        category.setParentCategory(entity1);
+        categoryRepository.save(category);
+
     }
 
     public void update(String id, CategoryDTO dto) {
@@ -65,21 +64,8 @@ public class CategoryService {
         List<CategoryDTO> dtoList = new LinkedList<>();
 
         all.forEach(categoryEntity -> {
-            CategoryDTO dto = new CategoryDTO();
-            dto.setId(categoryEntity.getId());
-            dto.setKey(categoryEntity.getKey());
-            switch (lang) {
-                case RU:
-                    dto.setName(categoryEntity.getNameRu());
-                    break;
-                case EN:
-                    dto.setName(categoryEntity.getNameEn());
-                    break;
-                case UZ:
-                    dto.setName(categoryEntity.getNameUz());
-                    break;
-            }
-            dtoList.add(dto);
+            CategoryDTO categoryDTO = categoryStructMapper.categoryEntityToCategoryDTOSelectLang(categoryEntity, lang);
+            dtoList.add(categoryDTO);
         });
         return dtoList;
     }
@@ -90,7 +76,7 @@ public class CategoryService {
         List<CategoryDTO> dtoList = new LinkedList<>();
 
         all.forEach(categoryEntity -> {
-            dtoList.add(toDTO(categoryEntity));
+            dtoList.add(categoryStructMapper.categoryEntityToCategoryDTO(categoryEntity));
         });
         return dtoList;
     }
@@ -107,15 +93,7 @@ public class CategoryService {
         });
     }
 
-    public CategoryDTO toDTO(CategoryEntity entity) {
-        CategoryDTO dto = new CategoryDTO();
-        dto.setId(entity.getId());
-        dto.setKey(entity.getKey());
-        dto.setNameUz(entity.getNameUz());
-        dto.setNameRu(entity.getNameRu());
-        dto.setNameEn(entity.getNameEn());
-        return dto;
-    }
+
 
     private void isValid(CategoryDTO dto) {
         if (dto.getKey() == null){
@@ -141,7 +119,7 @@ public class CategoryService {
         List<CategoryEntity> list = all.getContent();
         List<CategoryDTO> dtoList = new LinkedList<>();
         list.forEach(categoryEntity -> {
-            dtoList.add(toDTO(categoryEntity));
+            dtoList.add(categoryStructMapper.categoryEntityToCategoryDTO(categoryEntity));
         });
         return new PageImpl(dtoList,pageable, all.getTotalElements());
     }

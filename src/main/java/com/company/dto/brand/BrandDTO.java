@@ -1,7 +1,6 @@
 package com.company.dto.brand;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,5 +14,4 @@ public class BrandDTO {
     private String name;
     private LocalDateTime createdDate;
     private Boolean visible;
-
 }

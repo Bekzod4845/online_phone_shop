@@ -2,13 +2,13 @@
 ### create category and parentCategory in Admin
 POST http://localhost:8085/category/admin
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTYxNTMyMzYsImV4cCI6MTY1NjE1NjgzNiwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiOGE4YTgxY2I4MTlhMzZjNTAxODE5YTM2ZTk4ZDAwMDAiLCJyb2xlIjoiQURNSU4ifQ.p4qPeFkVayiL7KgUHBk5IQMcNWLCcEhg2QfiyB7iaiU
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTY2NjM5NzMsImV4cCI6MTY1NjY2NzU3MywiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiMmM5MGJlOTY4MWI3NmI4OTAxODFiNzZlOTRkODAwMDAiLCJyb2xlIjoiQURNSU4ifQ.bvlyajv5_mtGlNF5ZoOgsxFPh6bAgkISmqJtOP3tQhk
 
 {
   "key" : "iPhone",
-  "nameUz" : "iPhone",
-  "nameRu" : "iPhone",
-  "nameEn" : "iPhone"
+  "nameUz" : "iPhone_uz",
+  "nameRu" : "iPhone_ru",
+  "nameEn" : "iPhone_en"
 
 }
 
@@ -17,9 +17,9 @@ Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTYxNTMyMzYsImV4cCI6MTY1Nj
 ###get category list in Admin
 GET http://localhost:8085/category/admin
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTYxNTMyMzYsImV4cCI6MTY1NjE1NjgzNiwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiOGE4YTgxY2I4MTlhMzZjNTAxODE5YTM2ZTk4ZDAwMDAiLCJyb2xlIjoiQURNSU4ifQ.p4qPeFkVayiL7KgUHBk5IQMcNWLCcEhg2QfiyB7iaiU
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTY2NjM5NzMsImV4cCI6MTY1NjY2NzU3MywiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiMmM5MGJlOTY4MWI3NmI4OTAxODFiNzZlOTRkODAwMDAiLCJyb2xlIjoiQURNSU4ifQ.bvlyajv5_mtGlNF5ZoOgsxFPh6bAgkISmqJtOP3tQhk
 
 
 ###get category list users in current language
 GET http://localhost:8085/category/public
-Accept-Language: UZ
+Accept-Language: RU

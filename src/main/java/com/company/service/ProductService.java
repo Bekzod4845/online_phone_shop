@@ -6,7 +6,6 @@ import com.company.entity.*;
 import com.company.enums.ProductStatus;
 import com.company.exp.BadRequestException;
 import com.company.exp.ItemNotFoundException;
-import com.company.mapper.ProductShortInfo;
 import com.company.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
@@ -140,12 +139,5 @@ public class ProductService {
         // TODO image
         return dto;
     }
-    private ProductDTO shortDTOInfo(ProductShortInfo entity) {
-        ProductDTO dto = new ProductDTO();
-        dto.setId(entity.getId());
-        dto.setModel(entity.getModel());
-        dto.setPrice(entity.getPrice());
-        // TODO image
-        return dto;
-    }
+
 }

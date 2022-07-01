@@ -2,13 +2,31 @@
 ### cerate brand in Admin
 POST http://localhost:8085/brand/admin
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTYxNTMyMzYsImV4cCI6MTY1NjE1NjgzNiwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiOGE4YTgxY2I4MTlhMzZjNTAxODE5YTM2ZTk4ZDAwMDAiLCJyb2xlIjoiQURNSU4ifQ.p4qPeFkVayiL7KgUHBk5IQMcNWLCcEhg2QfiyB7iaiU
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTY2NTczNDAsImV4cCI6MTY1NjY2MDk0MCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiMmM5MGJlOTY4MWI3NmI4OTAxODFiNzZlOTRkODAwMDAiLCJyb2xlIjoiQURNSU4ifQ.f73DAj-1R5AUjEhzL5eNjwayzocQb6I6jgXonmOk3ZI
 
 {
   "name" : "Apple"
 }
 
+### update brand in Admin
+PUT http://localhost:8085/brand/admin/2
+Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTY2NTczNDAsImV4cCI6MTY1NjY2MDk0MCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiMmM5MGJlOTY4MWI3NmI4OTAxODFiNzZlOTRkODAwMDAiLCJyb2xlIjoiQURNSU4ifQ.f73DAj-1R5AUjEhzL5eNjwayzocQb6I6jgXonmOk3ZI
+
+{
+  "name" : "bbbb"
+}
+
+
 ### get brand list in admin
 GET http://localhost:8085/brand/admin
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTYxNTMyMzYsImV4cCI6MTY1NjE1NjgzNiwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiOGE4YTgxY2I4MTlhMzZjNTAxODE5YTM2ZTk4ZDAwMDAiLCJyb2xlIjoiQURNSU4ifQ.p4qPeFkVayiL7KgUHBk5IQMcNWLCcEhg2QfiyB7iaiU
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTY2NjE3MjksImV4cCI6MTY1NjY2NTMyOSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiMmM5MGJlOTY4MWI3NmI4OTAxODFiNzZlOTRkODAwMDAiLCJyb2xlIjoiQURNSU4ifQ.PfmRZTobuc9XpMJdAzsOgCvhE9w06R3xuby41XHOIpg
+
+### delete brand in id
+DELETE http://localhost:8085/brand/admin/2
+Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTY2NTczNDAsImV4cCI6MTY1NjY2MDk0MCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiMmM5MGJlOTY4MWI3NmI4OTAxODFiNzZlOTRkODAwMDAiLCJyb2xlIjoiQURNSU4ifQ.f73DAj-1R5AUjEhzL5eNjwayzocQb6I6jgXonmOk3ZI
+
+
+###public
+GET http://localhost:8085/brand/pagination?size=5&page=1

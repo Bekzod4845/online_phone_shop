@@ -1,5 +1,6 @@
 package com.company.controller;
 
+import com.company.common.ApiResponse;
 import com.company.dto.CategoryDTO;
 import com.company.enums.Language;
 import com.company.enums.ProfileRole;
@@ -7,6 +8,7 @@ import com.company.service.CategoryService;
 import com.company.util.HttpHeaderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,11 +38,11 @@ public class CategoryController {
 
     // SECURED
     @PostMapping("/admin")
-    public ResponseEntity<?> create(@RequestBody CategoryDTO categoryDto,
-                                    HttpServletRequest request) {
+    public ResponseEntity<ApiResponse> create(@RequestBody CategoryDTO categoryDto,
+                                              HttpServletRequest request) {
         HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
         categoryService.create(categoryDto);
-        return ResponseEntity.ok().body("Successfully created");
+        return new ResponseEntity<>(new ApiResponse(true,"Successfully created category"), HttpStatus.CREATED);
     }
 
     @GetMapping("/admin")

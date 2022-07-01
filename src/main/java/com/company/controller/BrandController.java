@@ -1,5 +1,6 @@
 package com.company.controller;
 
+import com.company.common.ApiResponse;
 import com.company.dto.brand.BrandDTO;
 
 import com.company.enums.ProfileRole;
@@ -7,6 +8,8 @@ import com.company.service.BrandService;
 import com.company.util.HttpHeaderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,45 +24,45 @@ public class BrandController {
 
     //PUBLIC
     @GetMapping("/pagination")
-    public ResponseEntity<PageImpl> getPagination(@RequestParam(value = "page", defaultValue = "1") int page,
-                                                  @RequestParam(value = "size", defaultValue = "5") int size) {
+    public ResponseEntity<PageImpl> getPagination(@RequestParam(value = "page", defaultValue = "5") int page,
+                                                  @RequestParam(value = "size", defaultValue = "2") int size) {
         PageImpl response = brandService.pagination(page, size);
-        return ResponseEntity.ok().body(response);
+        return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
 
 
     // SECURED
     @PostMapping("/admin")
-    public ResponseEntity<?> create(@RequestBody BrandDTO brandDTO, HttpServletRequest request) {
+    public ResponseEntity<ApiResponse> create(@RequestBody BrandDTO brandDTO, HttpServletRequest request) {
         HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
         brandService.create(brandDTO);
-        return ResponseEntity.ok().body("Successfully created");
+        return new ResponseEntity<>(new ApiResponse(true,"Successfully created brand"),HttpStatus.CREATED);
     }
 
     @GetMapping("/admin")
     public ResponseEntity<List<BrandDTO>> getList(HttpServletRequest request) {
         HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
         List<BrandDTO> list = brandService.getListOnlyForAdmin();
-        return ResponseEntity.ok().body(list);
+        return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
 
     @PutMapping("/admin/{id}")
-    private ResponseEntity<?> update(@PathVariable("id") Integer id,
+    private ResponseEntity<ApiResponse> update(@PathVariable("id") Integer id,
                                      @RequestBody BrandDTO dto,
                                      HttpServletRequest request) {
         HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
         brandService.update(id, dto);
-        return ResponseEntity.ok().body("Successfully updated");
+        return new ResponseEntity<>(new ApiResponse(true,"Successfully updated brand"),HttpStatus.OK);
     }
 
     @DeleteMapping("/admin/{id}")
-    private ResponseEntity<?> delete(@PathVariable("id") Integer id,
+    private ResponseEntity<ApiResponse> delete(@PathVariable("id") Integer id,
                                      HttpServletRequest request) {
         HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
         brandService.delete(id);
-        return ResponseEntity.ok().body("Successfully deleted");
+        return new ResponseEntity<>(new ApiResponse(true,"Successfully deleted brand"),HttpStatus.OK);
     }
 
 
