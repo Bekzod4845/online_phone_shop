@@ -8,7 +8,6 @@ import com.company.service.BrandService;
 import com.company.util.HttpHeaderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,20 +23,18 @@ public class BrandController {
 
     //PUBLIC
     @GetMapping("/pagination")
-    public ResponseEntity<PageImpl> getPagination(@RequestParam(value = "page", defaultValue = "5") int page,
-                                                  @RequestParam(value = "size", defaultValue = "2") int size) {
+    public ResponseEntity<PageImpl> getPagination(@RequestParam(value = "page", defaultValue = "4") int page,
+                                                  @RequestParam(value = "size", defaultValue = "1") int size) {
         PageImpl response = brandService.pagination(page, size);
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
-
-
     // SECURED
     @PostMapping("/admin")
-    public ResponseEntity<ApiResponse> create(@RequestBody BrandDTO brandDTO, HttpServletRequest request) {
+    public ResponseEntity<BrandDTO> create(@RequestBody BrandDTO dto, HttpServletRequest request) {
         HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
-        brandService.create(brandDTO);
-        return new ResponseEntity<>(new ApiResponse(true,"Successfully created brand"),HttpStatus.CREATED);
+        BrandDTO brandDTO = brandService.create(dto);
+        return new ResponseEntity<>(brandDTO,HttpStatus.CREATED);
     }
 
     @GetMapping("/admin")

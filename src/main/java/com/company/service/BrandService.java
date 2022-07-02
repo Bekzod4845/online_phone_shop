@@ -22,15 +22,18 @@ public class BrandService {
 
     @Autowired
     private BrandStructMapper brandStructMapper;
-    public void create(BrandDTO dto) {
-
+    public BrandDTO create(BrandDTO dto) {
         Optional<BrandEntity> optional = brendRepository.findByName(dto.getName());
         if (optional.isPresent()){
             throw new BadRequestException("brend is exsits");
         }
-        brendRepository.save(brandStructMapper.bookDTOToBookEntity(dto));
-    }
+        BrandEntity brandEntity = brendRepository.save(brandStructMapper.bookDTOToBookEntity(dto));
 
+        dto.setId(brandEntity.getId());
+
+        return dto;
+
+    }
     public void update(Integer id, BrandDTO dto) {
         Optional<BrandEntity> optional = brendRepository.findById(id);
         if (!optional.isPresent()){
@@ -68,15 +71,9 @@ public class BrandService {
     }
 
 
-
-
-
-
-
     public PageImpl pagination(int page, int size) {
         Sort sort = Sort.by(Sort.Direction.ASC, "id");
         Pageable pageable = PageRequest.of(page, size, sort);
-
         Page<BrandEntity> all = brendRepository.findAll(pageable);
         List<BrandEntity> list = all.getContent();
         List<BrandDTO> dtoList = new LinkedList<>();

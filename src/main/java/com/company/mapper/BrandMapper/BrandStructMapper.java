@@ -15,7 +15,6 @@ public interface BrandStructMapper {
 
     BrandEntity bookDTOToBookEntity(BrandDTO brandDTO);
 
-
     BrandEntity bookDTOToBookUpdate(BrandDTO brandDTO,BrandEntity brand);
 
 }

@@ -6,5 +6,5 @@ public record ApiResponse(boolean success, String message) {
 	public String getTimestamp() {
 		return LocalDateTime.now().toString();
 	}
-
 }
+
