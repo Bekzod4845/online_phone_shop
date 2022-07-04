@@ -1,5 +1,5 @@
 package com.company.enums;
 
 public enum ProfileRole {
-    USER,ADMIN,SELLER
+    ROLE_USER,ROLE_ADMIN,ROLE_SELLER
 }

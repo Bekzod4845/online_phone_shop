@@ -37,7 +37,7 @@ public class ProductAttachController {
     }
 
 
-    @GetMapping("/list")
+    @GetMapping("/admin/list")
     public ResponseEntity<?>list(){
        List<ShortInfoProduct> productAttachDTOS=  productAttachmentService.getProductAttachList();
         return new ResponseEntity<>(productAttachDTOS,HttpStatus.OK);

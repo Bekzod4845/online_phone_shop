@@ -20,27 +20,27 @@ public class ColorController {
     @Autowired
     private ColorService colorService;
    //Public
-    @GetMapping("/public")
+    @GetMapping("/public/list")
     public ResponseEntity<List<ColorDTO>> getList(@RequestHeader(value = "Accept-Language" ,defaultValue = "UZ") Language lang) {
         List<ColorDTO> list = colorService.getList(lang);
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    @GetMapping("/pagination")
+    @GetMapping("/public/pagination")
     public ResponseEntity<PageImpl> getPagination(@RequestParam(value = "page", defaultValue = "1") int page,
                                                   @RequestParam(value = "size", defaultValue = "5") int size) {
         PageImpl response = colorService.pagination(page, size);
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
     // SECURED
-    @PostMapping("/admin")
+    @PostMapping("/admin/create")
     public ResponseEntity<ApiResponse> create(@RequestBody ColorDTO colorDTO ) {
 
         colorService.create(colorDTO);
         return new ResponseEntity<>(new ApiResponse(true,"Successfully created color"),HttpStatus.CREATED);
     }
 
-    @GetMapping("/admin")
+    @GetMapping("/admin/list")
     public ResponseEntity<List<ColorDTO>> getList( ) {
 
         List<ColorDTO> list = colorService.getListOnlyForAdmin();

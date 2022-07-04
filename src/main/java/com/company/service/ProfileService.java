@@ -35,7 +35,7 @@ public class ProfileService {
         entity.setEmail(dto.getEmail());
         entity.setPassword(BCryptUtil.getBCrypt(dto.getPassword()));
         entity.setStatus(ProfileStatus.ACTIVE);
-        entity.setRole(ProfileRole.SELLER);
+        entity.setRole(ProfileRole.ROLE_SELLER);
         profileRepository.save(entity);
     }
 

@@ -1,11 +1,11 @@
 
 ### create category and parentCategory in Admin
-POST http://localhost:8085/category/admin
+POST http://localhost:8080/category/admin/create
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTY2NjM5NzMsImV4cCI6MTY1NjY2NzU3MywiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiMmM5MGJlOTY4MWI3NmI4OTAxODFiNzZlOTRkODAwMDAiLCJyb2xlIjoiQURNSU4ifQ.bvlyajv5_mtGlNF5ZoOgsxFPh6bAgkISmqJtOP3tQhk
+Authorization: Basic admin@gmail.com 5555
 
 {
-  "key" : "iPhone",
+  "key" : "iPhonedadadfa",
   "nameUz" : "iPhone_uz",
   "nameRu" : "iPhone_ru",
   "nameEn" : "iPhone_en"

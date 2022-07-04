@@ -31,7 +31,7 @@ public class InitController {
         entity.setEmail("admin@gmail.com");
         entity.setPassword(BCryptUtil.getBCrypt("5555"));
         entity.setStatus(ProfileStatus.ACTIVE);
-        entity.setRole(ProfileRole.ADMIN);
+        entity.setRole(ProfileRole.ROLE_ADMIN);
         profileRepository.save(entity);
         return "Success";
     }

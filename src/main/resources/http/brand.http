@@ -2,8 +2,7 @@
 ### cerate brand in Admin
 POST http://localhost:8085/brand/admin
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTY3MDkxMjksImV4cCI6MTY1NjcxMjcyOSwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiMmM5MGJlOTY4MWI3NmI4OTAxODFiNzZlOTRkODAwMDAiLCJyb2xlIjoiQURNSU4ifQ.Q6sd-iL1Pm5dTjs8G4Rw9aB2i27uG0AbdQMRT82zF1k
-
+Authorization: Basic admin@gmail.com
 {
   "name" : "aaaaa"
 }

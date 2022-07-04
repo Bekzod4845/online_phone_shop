@@ -1,45 +1,21 @@
-GET http://localhost:8085/init/initAdmin
-
-###login  phonenumber
-POST http://localhost:8085/auth/login
-Content-Type: application/json
-
-{
-  "phoneNumber": "5555"
-}
-
-###login  phonenumber
-POST http://localhost:8085/auth/login
-Content-Type: application/json
-
-{
-  "phoneNumber": "7777"
-}
+GET http://localhost:8080/init/initAdmin
 
 
 ###registration user
-POST http://localhost:8085/auth/registration
+POST http://localhost:8080/auth/registration
 Content-Type: application/json
 
 
 {
   "name" : "faeefeafa",
   "surname" : "aegfaeg",
-  "phoneNumber": "3333"
+  "email": "user@gmail.com",
+  "password" : "1111"
 }
 
 
 
 
-###create seller in Admin
-POST http://localhost:8085/profile/admin/create
-Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTYxNTMyMzYsImV4cCI6MTY1NjE1NjgzNiwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiOGE4YTgxY2I4MTlhMzZjNTAxODE5YTM2ZTk4ZDAwMDAiLCJyb2xlIjoiQURNSU4ifQ.p4qPeFkVayiL7KgUHBk5IQMcNWLCcEhg2QfiyB7iaiU
 
-{
-  "name" : "VAli",
-  "surname" : "Afadfae",
-  "phoneNumber": "7777"
-}
 
 

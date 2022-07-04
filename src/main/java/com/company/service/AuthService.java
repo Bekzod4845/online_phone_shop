@@ -30,7 +30,7 @@ public class AuthService {
         entity.setName(dto.getName());
         entity.setSurname(dto.getSurname());
         entity.setStatus(ProfileStatus.NOT_ACTIVE);
-        entity.setRole(ProfileRole.USER);
+        entity.setRole(ProfileRole.ROLE_USER);
         entity.setPassword(BCryptUtil.getBCrypt(dto.getPassword()));
         entity.setEmail(dto.getEmail());
         profileRepository.save(entity);

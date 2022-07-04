@@ -21,12 +21,12 @@ public class TypesController {
     private TypesService typesService;
 
     // PUBLIC
-    @GetMapping("/public")
+    @GetMapping("/public/list")
     public ResponseEntity<List<TypesDTO>> getList(@RequestHeader(value = "Accept-Language" ,defaultValue = "UZ")Language lang) {
         List<TypesDTO> list = typesService.getList(lang);
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
-    @GetMapping("/pagination")
+    @GetMapping("/public/pagination")
     public ResponseEntity<PageImpl> getPagination(@RequestParam(value = "page", defaultValue = "1") int page,
                                                   @RequestParam(value = "size", defaultValue = "5") int size) {
         PageImpl response = typesService.pagination(page, size);
@@ -35,14 +35,14 @@ public class TypesController {
 
     // SECURED
 
-    @PostMapping("/admin")
+    @PostMapping("/admin/list")
     public ResponseEntity<ApiResponse> create(@RequestBody TypesDTO dto) {
         typesService.create(dto);
         return new ResponseEntity<>(new ApiResponse(true,"Successfully created type"),HttpStatus.CREATED);
     }
 
 
-    @GetMapping("/admin")
+    @GetMapping("/admin/create")
     public ResponseEntity<List<TypesDTO>> getList() {
         List<TypesDTO> list = typesService.getListOnlyForAdmin();
        return new ResponseEntity<>(list,HttpStatus.OK);

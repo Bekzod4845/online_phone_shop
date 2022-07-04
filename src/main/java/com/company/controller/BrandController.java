@@ -21,7 +21,7 @@ public class BrandController {
     private BrandService brandService;
 
     //PUBLIC
-    @GetMapping("/pagination")
+    @GetMapping("/public/pagination")
     public ResponseEntity<PageImpl> getPagination(@RequestParam(value = "page", defaultValue = "4") int page,
                                                   @RequestParam(value = "size", defaultValue = "1") int size) {
         PageImpl response = brandService.pagination(page, size);
@@ -29,13 +29,13 @@ public class BrandController {
     }
 
     // SECURED
-    @PostMapping("/admin")
+    @PostMapping("/admin/create")
     public ResponseEntity<BrandDTO> create(@RequestBody BrandDTO dto) {
         BrandDTO brandDTO = brandService.create(dto);
         return new ResponseEntity<>(brandDTO,HttpStatus.CREATED);
     }
 
-    @GetMapping("/admin")
+    @GetMapping("/admin/list")
     public ResponseEntity<List<BrandDTO>> getList() {
 
         List<BrandDTO> list = brandService.getListOnlyForAdmin();

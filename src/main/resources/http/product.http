@@ -1,6 +1,6 @@
 
 ### product create Admin
-POST http://localhost:8085/product/seller
+POST http://localhost:8085/product/admin
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTYxNjExMTYsImV4cCI6MTY1NjE2NDcxNiwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiOGE4YTgxY2I4MTlhNmM5YjAxODE5YTZmMDYyNDAwMDEiLCJyb2xlIjoiU0VMTEVSIn0.4S6YlpoVq-JrpZsJYvP7qJnmI3REKcK8ypqdf95fkpM
 
@@ -16,13 +16,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTYxNjExMTYsImV4cCI6MTY1N
 }
 
 ### product status update On sale OR Not on sale in product Id  Admin
-PUT http://localhost:8085/product/seller/status/8a8a81cb819a6c9b01819a7040150002
+PUT http://localhost:8085/product/admin/status/8a8a81cb819a6c9b01819a7040150002
 Content-Type: application/json
 Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTYxNTYxNjAsImV4cCI6MTY1NjE1OTc2MCwiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiOGE4YTgxY2I4MTlhNmM5YjAxODE5YTZmMDYyNDAwMDEiLCJyb2xlIjoiU0VMTEVSIn0.enioUXmmr-HtlViF3bRWKKn2r_IVEJNnJNwnnGjg5JE
 
 
 ###product visible update ture or false in product Id   role Seller
-DELETE http://localhost:8082/product/seller/delete/ff808081817852420181786295a40002
+DELETE http://localhost:8082/product/admin/delete/ff808081817852420181786295a40002
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NTU3MDM4MDMsImV4cCI6MTY1NTcwNzQwMywiaXNzIjoiTWF6Z2kgcHJvZHVjdGlvbiIsImlkIjoiZmY4MDgwODE4MTdmNTI0MDAxODE3ZjUzMzRkNzAwMDIiLCJyb2xlIjoiVVNFUiJ9.RvURCikBZ14srhl5-HC6Sksp_DBgkDYVEf9-7U4aVo4
 

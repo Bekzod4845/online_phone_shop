@@ -22,13 +22,13 @@ public class CategoryController {
 
 
     // PUBLIC
-    @GetMapping("/public")
+    @GetMapping("/public/list")
     public ResponseEntity<List<CategoryDTO>> getList(@RequestHeader(value = "Accept-Language" ,defaultValue = "UZ") Language lang) {
         List<CategoryDTO> list = categoryService.getList(lang);
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
-    @GetMapping("/pagination")
+    @GetMapping("/public/pagination")
     public ResponseEntity<PageImpl> getPagination(@RequestParam(value = "page", defaultValue = "1") int page,
                                                   @RequestParam(value = "size", defaultValue = "5") int size) {
         PageImpl response = categoryService.pagination(page, size);
@@ -36,14 +36,14 @@ public class CategoryController {
     }
 
     // SECURED
-    @PostMapping("/admin")
+    @PostMapping("/admin/create")
     public ResponseEntity<ApiResponse> create(@RequestBody CategoryDTO categoryDto) {
 
         categoryService.create(categoryDto);
         return new ResponseEntity<>(new ApiResponse(true,"Successfully created category"), HttpStatus.CREATED);
     }
 
-    @GetMapping("/admin")
+    @GetMapping("/admin/list")
     public ResponseEntity<List<CategoryDTO>> getList() {
         List<CategoryDTO> list = categoryService.getListOnlyForAdmin();
         return new ResponseEntity<>(list,HttpStatus.OK);
