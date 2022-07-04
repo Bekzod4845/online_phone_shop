@@ -20,8 +20,7 @@ public class TypesService {
 
     @Autowired
     private TypesRepository typesRepository;
-    public TypesDTO create(TypesDTO dto) {
-        isValid(dto);
+    public void create(TypesDTO dto) {
 
         Optional<TypesEntity> optional = typesRepository.findByKey(dto.getKey());
         if (optional.isPresent()){
@@ -33,9 +32,7 @@ public class TypesService {
         entity.setNameRu(dto.getNameRu());
         entity.setNameEn(dto.getNameEn());
         typesRepository.save(entity);
-        dto.setId(entity.getId());
 
-        return dto;
     }
 
     public List<TypesDTO> getList(Language lang) {
@@ -83,7 +80,6 @@ public class TypesService {
     }
 
     public void update(Integer id, TypesDTO dto) {
-        isValid(dto);
         TypesEntity entity = get(id);
         entity.setKey(dto.getKey());
         entity.setNameUz(dto.getNameUz());
@@ -98,20 +94,7 @@ public class TypesService {
         entity.setVisible(false);
         System.out.println("success delete  type");
     }
-    private void isValid(TypesDTO dto) {
-        if (dto.getKey() == null){
-            throw new BadRequestException("is wrong key");
-        }
-        if (dto.getNameUz() == null){
-            throw new BadRequestException("is wrong name_uz");
-        }
-        if (dto.getNameEn() == null){
-            throw new BadRequestException("is wrong name_en");
-        }
-        if (dto.getNameRu() == null){
-            throw new BadRequestException("is wrong name_ru");
-        }
-    }
+
 
     public TypesEntity get(Integer id) {
         return typesRepository.findById(id).orElseThrow(() -> {

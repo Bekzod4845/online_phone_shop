@@ -4,6 +4,7 @@ import com.company.dto.AttachDTO;
 import com.company.service.AttachService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,9 +24,9 @@ public class AttachController {
     private AttachService attachService;
 
     @PostMapping("/upload")
-    public ResponseEntity<?> upload(MultipartFile file) throws IOException {
+    public ResponseEntity<AttachDTO> upload(MultipartFile file) throws IOException {
         AttachDTO attachDTO = attachService.saveToSystem(file);
-        return ResponseEntity.ok().body(attachDTO);
+        return new ResponseEntity<>(attachDTO, HttpStatus.OK);
     }
 
     @GetMapping(value = "/open/{fileName}", produces = MediaType.IMAGE_PNG_VALUE)
@@ -55,7 +56,7 @@ public class AttachController {
     @DeleteMapping("/delete/{fileName}")
     public ResponseEntity<?> delete(@PathVariable("fileName") String id) {
         String response = attachService.delete(id);
-        return ResponseEntity.ok().body(response);
+        return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
 

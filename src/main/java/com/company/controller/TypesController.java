@@ -1,12 +1,13 @@
 package com.company.controller;
 
+import com.company.common.ApiResponse;
 import com.company.dto.TypesDTO;
 import com.company.enums.Language;
 import com.company.enums.ProfileRole;
 import com.company.service.TypesService;
-import com.company.util.HttpHeaderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,47 +24,41 @@ public class TypesController {
     @GetMapping("/public")
     public ResponseEntity<List<TypesDTO>> getList(@RequestHeader(value = "Accept-Language" ,defaultValue = "UZ")Language lang) {
         List<TypesDTO> list = typesService.getList(lang);
-        return ResponseEntity.ok().body(list);
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
     @GetMapping("/pagination")
     public ResponseEntity<PageImpl> getPagination(@RequestParam(value = "page", defaultValue = "1") int page,
                                                   @RequestParam(value = "size", defaultValue = "5") int size) {
         PageImpl response = typesService.pagination(page, size);
-        return ResponseEntity.ok().body(response);
+        return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
     // SECURED
 
     @PostMapping("/admin")
-    public ResponseEntity<?> create(@RequestBody TypesDTO dto, HttpServletRequest request) {
-        HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
+    public ResponseEntity<ApiResponse> create(@RequestBody TypesDTO dto) {
         typesService.create(dto);
-        return ResponseEntity.ok().body("Succsessfully created");
+        return new ResponseEntity<>(new ApiResponse(true,"Successfully created type"),HttpStatus.CREATED);
     }
 
 
     @GetMapping("/admin")
-    public ResponseEntity<List<TypesDTO>> getlist(HttpServletRequest request) {
-        HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
+    public ResponseEntity<List<TypesDTO>> getList() {
         List<TypesDTO> list = typesService.getListOnlyForAdmin();
-        return ResponseEntity.ok().body(list);
+       return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
 
     @PutMapping("/admin/{id}")
-    private ResponseEntity<?> update(@PathVariable("id") Integer id,
-                                     @RequestBody TypesDTO dto,
-                                     HttpServletRequest request) {
-        HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
+    private ResponseEntity<ApiResponse> update(@PathVariable("id") Integer id,
+                                     @RequestBody TypesDTO dto) {
         typesService.update(id, dto);
-        return ResponseEntity.ok().body("Succsessfully updated");
+        return new ResponseEntity<>(new ApiResponse(true,"Successfully updated type"),HttpStatus.OK);
     }
     @DeleteMapping("/admin/{id}")
-    private ResponseEntity<?> delete(@PathVariable("id") Integer id,
-                                     HttpServletRequest request) {
-        HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
+    private ResponseEntity<ApiResponse> delete(@PathVariable("id") Integer id) {
         typesService.delete(id);
-        return ResponseEntity.ok().body("Sucsessfully deleted");
+        return new ResponseEntity<>(new ApiResponse(true,"Successfully updated type"),HttpStatus.OK);
     }
 
 

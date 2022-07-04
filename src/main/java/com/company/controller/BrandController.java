@@ -5,7 +5,6 @@ import com.company.dto.brand.BrandDTO;
 
 import com.company.enums.ProfileRole;
 import com.company.service.BrandService;
-import com.company.util.HttpHeaderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpStatus;
@@ -31,15 +30,14 @@ public class BrandController {
 
     // SECURED
     @PostMapping("/admin")
-    public ResponseEntity<BrandDTO> create(@RequestBody BrandDTO dto, HttpServletRequest request) {
-        HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
+    public ResponseEntity<BrandDTO> create(@RequestBody BrandDTO dto) {
         BrandDTO brandDTO = brandService.create(dto);
         return new ResponseEntity<>(brandDTO,HttpStatus.CREATED);
     }
 
     @GetMapping("/admin")
-    public ResponseEntity<List<BrandDTO>> getList(HttpServletRequest request) {
-        HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
+    public ResponseEntity<List<BrandDTO>> getList() {
+
         List<BrandDTO> list = brandService.getListOnlyForAdmin();
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
@@ -47,17 +45,16 @@ public class BrandController {
 
     @PutMapping("/admin/{id}")
     private ResponseEntity<ApiResponse> update(@PathVariable("id") Integer id,
-                                     @RequestBody BrandDTO dto,
-                                     HttpServletRequest request) {
-        HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
+                                     @RequestBody BrandDTO dto) {
+
         brandService.update(id, dto);
         return new ResponseEntity<>(new ApiResponse(true,"Successfully updated brand"),HttpStatus.OK);
     }
 
     @DeleteMapping("/admin/{id}")
-    private ResponseEntity<ApiResponse> delete(@PathVariable("id") Integer id,
-                                     HttpServletRequest request) {
-        HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
+    private ResponseEntity<ApiResponse> delete(@PathVariable("id") Integer id
+                                    ) {
+
         brandService.delete(id);
         return new ResponseEntity<>(new ApiResponse(true,"Successfully deleted brand"),HttpStatus.OK);
     }

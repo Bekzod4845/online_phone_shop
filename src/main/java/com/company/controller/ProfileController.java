@@ -1,10 +1,11 @@
 package com.company.controller;
 
+import com.company.common.ApiResponse;
 import com.company.dto.ProfileDTO;
 import com.company.enums.ProfileRole;
 import com.company.service.ProfileService;
-import com.company.util.HttpHeaderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,34 +19,27 @@ public class ProfileController {
     private ProfileService profileService;
 
     @PostMapping("/admin/create")
-    public ResponseEntity<ProfileDTO> create(@RequestBody ProfileDTO dto, HttpServletRequest request) {
-        HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
-        ProfileDTO profileDTO = profileService.create(dto);
-        return ResponseEntity.ok(profileDTO);
+    public ResponseEntity<ApiResponse> create(@RequestBody ProfileDTO dto) {
+         profileService.create(dto);
+        return new ResponseEntity<>(new ApiResponse(true,"Successfully created seller"), HttpStatus.CREATED);
     }
     @PutMapping ("/admin/{id}")
-    public ResponseEntity<String> update(@PathVariable("id") String id,
-                                            @RequestBody ProfileDTO dto,
-                                             HttpServletRequest request) {
-        HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
+    public ResponseEntity<ApiResponse> update(@PathVariable("id") String id,
+                                            @RequestBody ProfileDTO dto) {
         profileService.update(id, dto);
-        return ResponseEntity.ok("Success");
+        return new ResponseEntity<>(new ApiResponse(true,"Successfully update seller"),HttpStatus.OK);
     }
 
     @PutMapping("/admin/profileBlock/{id}")
-    public ResponseEntity<ProfileDTO> profileBlock(@PathVariable("id") String id,
-                                                   HttpServletRequest request) {
-        HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
+    public ResponseEntity<ApiResponse> profileBlock(@PathVariable("id") String id) {
         profileService.profileBlock(id);
-        return ResponseEntity.ok().build();
+        return new ResponseEntity<>(new ApiResponse(true,"Successfully  profile block "),HttpStatus.OK);
     }
 
     @DeleteMapping ("/admin/{id}")
-    public ResponseEntity<ProfileDTO> profileDelete(@PathVariable("id") String id,
-                                                    HttpServletRequest request) {
-        HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
+    public ResponseEntity<ApiResponse> profileDelete(@PathVariable("id") String id) {
         profileService.profileDelete(id);
-        return ResponseEntity.ok().build();
+        return new ResponseEntity<>(new ApiResponse(true,"Successfully deleted seller"),HttpStatus.OK);
     }
 
 //    @PutMapping("/updateDetail")
@@ -57,10 +51,9 @@ public class ProfileController {
 //    }
 
     @GetMapping("/admin")
-    public ResponseEntity<?> getAll(HttpServletRequest request){
-        HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
+    public ResponseEntity<List<ProfileDTO> > getAll(){
         List<ProfileDTO> all = profileService.getAll();
-        return ResponseEntity.ok().body(all);
+       return  new ResponseEntity<>(all,HttpStatus.OK);
     }
 
 

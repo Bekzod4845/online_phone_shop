@@ -5,7 +5,6 @@ import com.company.dto.CategoryDTO;
 import com.company.enums.Language;
 import com.company.enums.ProfileRole;
 import com.company.service.CategoryService;
-import com.company.util.HttpHeaderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpStatus;
@@ -26,48 +25,43 @@ public class CategoryController {
     @GetMapping("/public")
     public ResponseEntity<List<CategoryDTO>> getList(@RequestHeader(value = "Accept-Language" ,defaultValue = "UZ") Language lang) {
         List<CategoryDTO> list = categoryService.getList(lang);
-        return ResponseEntity.ok().body(list);
+        return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
     @GetMapping("/pagination")
     public ResponseEntity<PageImpl> getPagination(@RequestParam(value = "page", defaultValue = "1") int page,
                                                   @RequestParam(value = "size", defaultValue = "5") int size) {
         PageImpl response = categoryService.pagination(page, size);
-        return ResponseEntity.ok().body(response);
+        return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
     // SECURED
     @PostMapping("/admin")
-    public ResponseEntity<ApiResponse> create(@RequestBody CategoryDTO categoryDto,
-                                              HttpServletRequest request) {
-        HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
+    public ResponseEntity<ApiResponse> create(@RequestBody CategoryDTO categoryDto) {
+
         categoryService.create(categoryDto);
         return new ResponseEntity<>(new ApiResponse(true,"Successfully created category"), HttpStatus.CREATED);
     }
 
     @GetMapping("/admin")
-    public ResponseEntity<List<CategoryDTO>> getList( HttpServletRequest request) {
-        HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
+    public ResponseEntity<List<CategoryDTO>> getList() {
         List<CategoryDTO> list = categoryService.getListOnlyForAdmin();
-        return ResponseEntity.ok().body(list);
+        return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
 
     @PutMapping("/admin/{id}")
-    private ResponseEntity<?> update(@PathVariable("id") String id,
-                                     @RequestBody CategoryDTO dto,
-                                     HttpServletRequest request) {
-        HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
+    private ResponseEntity<ApiResponse> update(@PathVariable("id") String id,
+                                     @RequestBody CategoryDTO dto) {
+
         categoryService.update(id, dto);
-        return ResponseEntity.ok().body("Successfully updated");
+        return new ResponseEntity<ApiResponse>(new ApiResponse(true,"Successfully update category"),HttpStatus.OK);
     }
 
     @DeleteMapping("/admin/{id}")
-    private ResponseEntity<?> delete(@PathVariable("id") String id,
-                                     HttpServletRequest request) {
-        HttpHeaderUtil.getId(request,ProfileRole.ADMIN);
+    private ResponseEntity<ApiResponse> delete(@PathVariable("id") String id) {
         categoryService.delete(id);
-        return ResponseEntity.ok().body("Successfully deleted");
+        return new ResponseEntity<ApiResponse>(new ApiResponse(true,"Successfully delete category"),HttpStatus.OK);
     }
 
 

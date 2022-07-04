@@ -28,12 +28,16 @@ public class ProfileEntity {
     @Column(nullable = false)
     private String surname;
 
-    @Column(name = "phone",nullable = false,unique = true)
-    private String phoneNumber;
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
 
     @Column(name = "status",nullable = false)
     @Enumerated(EnumType.STRING)
     private ProfileStatus status;
+
 
     @Column(name = "role",nullable = false)
     @Enumerated(EnumType.STRING)

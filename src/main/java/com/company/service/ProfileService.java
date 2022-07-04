@@ -1,5 +1,6 @@
 package com.company.service;
 
+import com.company.config.springConfig.CustomUserDetails;
 import com.company.dto.ProfileDTO;
 import com.company.entity.ProfileEntity;
 import com.company.enums.ProfileRole;
@@ -7,7 +8,10 @@ import com.company.enums.ProfileStatus;
 import com.company.exp.BadRequestException;
 import com.company.exp.ItemNotFoundException;
 import com.company.repository.ProfileRepository;
+import com.company.util.springSicurityUtil.BCryptUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
@@ -20,21 +24,19 @@ public class ProfileService {
     private ProfileRepository profileRepository;
 
     // admin
-    public ProfileDTO create(ProfileDTO dto) {
-        isValid(dto);
-        Optional<ProfileEntity> optional = profileRepository.findByPhoneNumber(dto.getPhoneNumber());
+    public void create(ProfileDTO dto) {
+        Optional<ProfileEntity> optional = profileRepository.findByEmail(dto.getEmail());
         if (optional.isPresent()) {
             throw new BadRequestException("User already exists");
         }
         ProfileEntity entity = new ProfileEntity();
         entity.setName(dto.getName());
         entity.setSurname(dto.getSurname());
-        entity.setPhoneNumber(dto.getPhoneNumber());
+        entity.setEmail(dto.getEmail());
+        entity.setPassword(BCryptUtil.getBCrypt(dto.getPassword()));
         entity.setStatus(ProfileStatus.ACTIVE);
         entity.setRole(ProfileRole.SELLER);
         profileRepository.save(entity);
-        dto.setId(entity.getId());
-        return dto;
     }
 
     public void update(String profileId, ProfileDTO dto) {;
@@ -45,10 +47,9 @@ public class ProfileService {
         ProfileEntity profileEntity = optional.get();
         profileEntity.setName(dto.getName());
         profileEntity.setSurname(dto.getSurname());
-        profileEntity.setPhoneNumber(dto.getPhoneNumber());
+        profileEntity.setEmail(dto.getEmail());
+        profileEntity.setPassword(dto.getPassword());
         profileRepository.save(profileEntity);
-      //  profileRepository.update(profileId,dto.getName(),dto.getSurname(),dto.getPhoneNumber());
-
     }
 
     public ProfileEntity get(String id) {
@@ -57,18 +58,11 @@ public class ProfileService {
         });
     }
 
-    private void isValid(ProfileDTO dto) {
-        if (dto.getSurname() == null){
-            throw new BadRequestException("surname is wrong");
-        }
-        if (dto.getName() == null){
-            throw new BadRequestException("name is wrong");
-        }
-        if (dto.getPhoneNumber() == null ){
-            throw new BadRequestException("phone is wrong ");
-        }
-
+    public CustomUserDetails getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return (CustomUserDetails) authentication.getPrincipal();
     }
+
 
     public List<ProfileDTO> getAll() {
         Iterable<ProfileEntity> entities = profileRepository.findAll();
@@ -77,7 +71,7 @@ public class ProfileService {
             ProfileDTO dto = new ProfileDTO();
             dto.setName(profileEntity.getName());
             dto.setSurname(profileEntity.getSurname());
-            dto.setPhoneNumber(profileEntity.getPhoneNumber());
+            dto.setEmail(profileEntity.getEmail());
             dtoList.add(dto);
         });
         return dtoList;
