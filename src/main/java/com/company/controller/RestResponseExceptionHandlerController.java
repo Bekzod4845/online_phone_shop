@@ -21,7 +21,6 @@ public class RestResponseExceptionHandlerController {
     public ResponseEntity<String> handleException(NoPermissionException e) {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
-
     @ExceptionHandler(IOException.class)
     public ResponseEntity<String> handleException(IOException e) {
         return ResponseEntity.badRequest().body(e.getMessage());
